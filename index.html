@@ -396,50 +396,68 @@
     <script>
         // 1. WhatsApp Contact Form Handler (Fixed without "#")
         function handleFormSubmit(event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            // Inputs වලින් හරියටම values ගන්නවා
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('msg').value || "නැත";
+    const form = document.getElementById("contact-form");
 
-            const whatsappNumber = "94718722874"; 
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const msg = document.getElementById("msg").value.trim();
 
-            // දිනය සහ වේලාව ගැනීම
-            const now = new Date();
-            const currentDate = now.toLocaleDateString('en-GB'); 
-            const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }); 
+    if (!name || !phone) {
+        alert("කරුණාකර නම සහ දුරකථන අංකය ඇතුළත් කරන්න.");
+        return;
+    }
 
-            // Auto Customer ID Generation
-            let customerCount = localStorage.getItem('total_customers') || 0;
-            customerCount = parseInt(customerCount) + 1;
-            localStorage.setItem('total_customers', customerCount); 
-            
-            const uniqueCustomerID = String(customerCount).padStart(4, '0');
+    let customerCount = Number(localStorage.getItem("total_customers")) || 0;
+    customerCount++;
+    localStorage.setItem("total_customers", customerCount);
 
-            // FIXED: '# ' ලකුණ සම්පූර්ණයෙන්ම අයින් කර 'ID' ලෙස නිවැරදි කර ඇත
-            const rawMessage = `*🔥 නව පණිවිඩයක් - Coach Nisha Fitness*\n\n` +
-                               `*Customer ID:* ID${uniqueCustomerID}\n` +
-                               `*නම:* ${name}\n` +
-                               `*දුරකථන අංකය:* ${phone}\n` +
-                               `*අවශ්‍යතාවය:* ${message}\n\n` +
-                               `*දිනය:* ${currentDate}\n` +
-                               `*වේලාව:* ${currentTime}`;
+    const customerID = "ID" + String(customerCount).padStart(4, "0");
 
-            // සම්පූර්ණ මැසේජ් එකම URL එකකට හරියන්න encode කරනවා
-            const textMessage = encodeURIComponent(rawMessage);
-            const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${textMessage}`;
+    const now = new Date();
+    const currentDate = now.toLocaleDateString("en-GB");
+    const currentTime = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+    });
 
-            // WhatsApp window එක open කරනවා
-            window.open(whatsappURL, '_blank');
+    const whatsappNumber = "94718722874";
 
-            const successBox = document.getElementById('success-box');
-            if (successBox) {
-                successBox.classList.remove('hidden');
-                document.getElementById('contact-form').reset();
-                setTimeout(() => successBox.classList.add('hidden'), 4000);
-            }
-        }
+    const message =
+`🔥 නව පණිවිඩයක් - Coach Nisha Fitness
+
+🆔 Customer ID : ${customerID}
+
+👤 නම : ${name}
+
+📞 දුරකථන අංකය : ${phone}
+
+💬 අවශ්‍යතාවය :
+${msg || "නැත"}
+
+📅 දිනය : ${currentDate}
+
+🕒 වේලාව : ${currentTime}`;
+
+    console.log(message);
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank");
+
+    form.reset();
+
+    const successBox = document.getElementById("success-box");
+    if (successBox) {
+        successBox.classList.remove("hidden");
+        setTimeout(() => {
+            successBox.classList.add("hidden");
+        }, 4000);
+    }
+}
 
         // 2. BMI Calculation Function
         function calculateBMI() {
