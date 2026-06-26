@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>කෝච් නිශා ෆිට්නස්  සෙන්ටර් - Coach Nisha Fitness</title>
-    <!-- Tailwind CSS CDN -->
+    <title>කෝච් නිශා ෆิต්නස් සෙන්ටර් - Coach Nisha Fitness</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -35,11 +34,9 @@
             }
         }
     </script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;700&family=Noto+Sans+Sinhala:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -53,23 +50,19 @@
 </head>
 <body class="bg-brand-lightBg text-brand-lightText dark:bg-brand-darkBg dark:text-brand-darkText min-h-screen selection:bg-brand-accent selection:text-[#090d16] overflow-x-hidden transition-colors duration-300">
 
-    <!-- Header / Navbar -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-brand-darkBg/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <!-- Logo -->
             <a href="#" class="title-font text-3xl font-bold tracking-wider flex items-center gap-2 text-brand-lightText dark:text-brand-darkText">
                 <i class="fa-solid fa-dumbbell text-brand-accent animate-pulse"></i>
                 COACH<span class="text-brand-accent">NISHA</span>
             </a>
 
-            <!-- Desktop Menu -->
             <nav class="hidden md:flex items-center gap-8">
                 <a href="#about" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">අප ගැන</a>
                 <a href="#services" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">සේවාවන්</a>
                 <a href="#bmi" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">BMI ගණකය</a>
                 <a href="#schedule" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">වේලාවන්</a>
                 
-                <!-- Theme Toggle Button -->
                 <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-lg hover:text-brand-accent transition-colors duration-300" title="තේමාව වෙනස් කරන්න">
                     <i id="theme-icon" class="fa-solid fa-moon"></i>
                 </button>
@@ -77,7 +70,6 @@
                 <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-[#090d16] font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-brand-accent/20 transition-all duration-300 text-sm">සම්බන්ධ වීමට</a>
             </nav>
 
-            <!-- Mobile Action Items -->
             <div class="flex items-center gap-4 md:hidden">
                 <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-md">
                     <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
@@ -88,7 +80,6 @@
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
         <div id="mobile-menu" class="hidden md:hidden bg-brand-lightCard dark:bg-brand-darkBg border-t border-slate-200 dark:border-white/5 px-6 py-6 space-y-4 absolute top-20 left-0 w-full transition-all duration-300 shadow-xl">
             <a href="#about" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">අප ගැන</a>
             <a href="#services" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">සේවාවන්</a>
@@ -98,7 +89,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-darkBg">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center"></div>
         <div class="absolute inset-0 bg-slate-950/75 dark:bg-[#090d16]/80"></div>
@@ -127,7 +117,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center">
             <div class="max-w-3xl space-y-10">
@@ -135,7 +124,7 @@
                     <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">අප <span class="text-brand-accent">කවුද?</span></h2>
                     <div class="w-16 h-1 bg-brand-accent rounded"></div>
                     <p class="text-slate-600 dark:text-brand-gray text-base leading-relaxed">
-                        කෝච් නිශා ෆිට්නස්  සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ආයතනයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
+                        කෝච් නිශා ෆิต්නස් සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ශ්‍රී ලාංකීය ප්‍රමුඛතම ස්ථානයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
                     </p>
                 </div>
 
@@ -164,7 +153,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="py-24 bg-slate-50 dark:bg-brand-darkCard/20 border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6">
             <div class="space-y-4 mb-12">
@@ -177,7 +165,7 @@
                     <div>
                         <div class="text-[#090d16] dark:text-brand-accent text-3xl mb-4"><i class="fa-solid fa-weight-hanging"></i></div>
                         <h3 class="font-bold mb-2 text-md">ශක්ති වර්ධනය</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">මාංශ පේශි වර්ධනය සහ ශරීර ශක්තිය සඳහා විශේෂ බර ඉසිලීමේ (Weight Training) ක්‍රමවේද.</p>
+                        <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">මාංශ පේශි වර්ධනය සහ ශරීර ශක්තිය සඳහා speciale බර ඉසිලීමේ (Weight Training) ක්‍රමවේද.</p>
                     </div>
                 </div>
 
@@ -200,7 +188,6 @@
         </div>
     </section>
     
-    <!-- BMI Calculator Section -->
     <section id="bmi" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
             <div class="max-w-3xl w-full space-y-10 text-center flex flex-col items-center">
@@ -216,7 +203,6 @@
                 <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl transition-colors duration-300 w-full max-w-2xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                         
-                        <!-- Inputs Side -->
                         <div class="space-y-4 text-left">
                             <div>
                                 <label class="block text-xs font-semibold mb-1 text-slate-700 dark:text-slate-300" for="weight">බර (kg)</label>
@@ -231,7 +217,6 @@
                             </button>
                         </div>
 
-                        <!-- Result Display Side -->
                         <div class="bg-slate-100 dark:bg-brand-darkBg/50 p-6 rounded-2xl border border-slate-200 dark:border-white/5 flex flex-col justify-center items-center text-center space-y-3 min-h-[180px]">
                             <div class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">ඔබේ BMI අගය</div>
                             <div id="bmi-result" class="text-5xl font-extrabold text-[#090d16] dark:text-brand-accent">00.0</div>
@@ -244,7 +229,6 @@
         </div>
     </section>
 
-    <!-- Class Schedule Section (Updated Time Table) -->
     <section id="schedule" class="py-24 bg-slate-50 dark:bg-brand-darkCard/20 border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6">
             <div class="space-y-4 mb-12">
@@ -254,10 +238,9 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Weekdays Card -->
                 <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-300">
                     <h3 class="text-xl font-bold text-[#090d16] dark:text-brand-accent mb-4 border-b border-slate-200 dark:border-white/10 pb-2">සතියේ දිනවල (Weekdays)</h3>
-                    <p class="text-xs text-slate-400 mb-4 font-semibold">(සඳුදා සිට සිකුරාදා දක්වා - බදාදා හැර)</p>
+                    <p class="text-xs text-slate-400 mb-4 font-semibold">(සඳුදා සිට සිකුරාදා දක්වා - ბදාදා හැර)</p>
                     
                     <div class="space-y-3 text-sm">
                         <div class="flex justify-between items-center py-2.5 px-3 bg-slate-50 dark:bg-brand-darkBg/50 rounded-xl">
@@ -271,7 +254,6 @@
                     </div>
                 </div>
 
-                <!-- Weekend Card -->
                 <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-300 flex flex-col justify-between">
                     <div>
                         <h3 class="text-xl font-bold text-[#090d16] dark:text-brand-accent mb-4 border-b border-slate-200 dark:border-white/10 pb-2">සති අන්තය (Weekend)</h3>
@@ -295,7 +277,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
@@ -311,7 +292,7 @@
                         </div>
                         <div>
                             <div class="text-[10px] text-slate-400 font-bold uppercase">දුරකථන අංකය</div>
-                            <div class="text-lg font-bold">+94 76-2204614</div>
+                            <div class="text-lg font-bold">+94 11 234 5678</div>
                         </div>
                     </div>
 
@@ -336,7 +317,6 @@
                     </div>
                 </div>
 
-                <!-- Form Displaying -->
                 <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl relative overflow-hidden">
                     <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
                         <div>
@@ -370,7 +350,6 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
     <footer class="bg-gradient-to-r from-amber-400 via-brand-gold to-yellow-500 text-slate-950 py-10 font-medium border-t-4 border-white/20 shadow-2xl">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-center md:text-left space-y-1">
@@ -392,38 +371,44 @@
         </div>
     </footer>
 
-    <!-- JavaScript Interactivity -->
     <script>
-        // 1. WhatsApp Contact Form Handler with Dynamic ID, Date, and Time
+        // 1. WhatsApp Contact Form Handler - FIX: Template literals use backticks (``)
         function handleFormSubmit(event) {
             event.preventDefault();
 
+            // Inputs වලින් හරියටම values ගන්නවා
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const message = document.getElementById('msg').value || "නැත";
 
             const whatsappNumber = "94718722874"; 
 
+            // දිනය සහ වේලාව ගැනීම
             const now = new Date();
             const currentDate = now.toLocaleDateString('en-GB'); 
             const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }); 
 
+            // Auto Customer ID Generation
             let customerCount = localStorage.getItem('total_customers') || 0;
             customerCount = parseInt(customerCount) + 1;
             localStorage.setItem('total_customers', customerCount); 
             
             const uniqueCustomerID = String(customerCount).padStart(4, '0');
 
-            const textMessage = `*🔥 නව පණිවිඩයක් - Coach Nisha Fitness* %0A%0A` +
-                                `*Customer ID:* #${uniqueCustomerID} %0A` +
-                                `*නම:* ${name} %0A` +
-                                `*දුරකථන අංකය:* ${phone} %0A` +
-                                `*අවශ්‍යතාවය:* ${message} %0A%0A` +
-                                `*දිනය:* ${currentDate} %0A` +
-                                `*වේලාව:* ${currentTime}`;
+            // FIX: String එක Backticks වලින් පටන්ගෙන encodeURIComponent එකෙන් ආරක්ෂිතව යවනවා
+            const rawMessage = `*🔥 නව පණිවිඩයක් - Coach Nisha Fitness*\n\n` +
+                               `*Customer ID:* #${uniqueCustomerID}\n` +
+                               `*නම:* ${name}\n` +
+                               `*දුරකථන අංකය:* ${phone}\n` +
+                               `*අවශ්‍යතාවය:* ${message}\n\n` +
+                               `*දිනය:* ${currentDate}\n` +
+                               `*වේලාව:* ${currentTime}`;
 
+            // සම්පූර්ණ මැසේජ් එකම URL එකකට හරියන්න encode කරනවා
+            const textMessage = encodeURIComponent(rawMessage);
             const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${textMessage}`;
 
+            // WhatsApp window එක open කරනවා
             window.open(whatsappURL, '_blank');
 
             const successBox = document.getElementById('success-box');
@@ -464,7 +449,7 @@
                 statusText = `
                     <div class="space-y-2">
                         <div class="text-emerald-500 font-bold text-base">සාමාන්‍ය බර (Healthy) ✅</div>
-                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">නියමයි! ඔබේ බර ඉතාමත් සෞඛ්‍ය සම්පන්න මට්ටමක පවතිනවා. මේ නිරෝගී බව සහ ශරීරයේ හැඩය දිగටම පවත්වාගෙන යෑම සඳහා <strong>අප හා එක්වන්න!</strong></p>
+                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">නියමයි! ඔබේ බර ඉතාමත් සෞඛ්‍ය සම්පන්න මට්ටමක පවතිනවා. මේ නිරෝගී බව සහ ශරීරයේ හැඩය දිගටම පවත්වාගෙන යෑම සඳහා <strong>අප හා එක්වන්න!</strong></p>
                     </div>`;
             } 
             else if (bmi >= 25 && bmi < 30) {
