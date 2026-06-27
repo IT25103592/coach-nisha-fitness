@@ -1,552 +1,779 @@
 <!DOCTYPE html>
-<html lang="si" class="scroll-smooth dark">
+
+<html class="scroll-smooth dark" lang="si">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>කෝච් නිශා ෆිට්නස්  සෙන්ටර් - Coach Nisha Fitness</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            darkBg: '#090d16',
-                            darkCard: '#131c2e',
-                            lightBg: '#f8fafc',
-                            lightCard: '#ffffff',
-                            accent: '#cfff00',
-                            accentHover: '#b3db00',
-                            gold: '#dfb720',
-                            goldHover: '#c9a31a',
-                            darkText: '#f8fafc',
-                            lightText: '#0f172a',
-                            gray: '#94a3b8'
-                        }
-                    },
-                    fontFamily: {
-                        sinhala: ['Noto Sans Sinhala', 'sans-serif'],
-                        title: ['Gemunu Libre', 'sans-serif'],
-                        poppins: ['Poppins', 'sans-serif']
-                    }
-                }
-            }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>කෝච් නිශා ෆිට්නස් සෙන්ටර් | Coach Nisha Fitness</title>
+<link href="logo.png" rel="icon" type="image/png"/>
+<!-- Google Fonts: Outfit + Noto Sans Sinhala -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&amp;family=Noto+Sans+Sinhala:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v4 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>@variant dark (.dark &);</style>
+<!-- AOS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+<style>
+        :root {
+            --accent: #cfff00;
+            --accent-hover: #b3db00;
+            --dark-bg: #090d16;
+            --dark-card: #111827;
+            --off-white: #f8fafc;
         }
-    </script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@400;700&family=Noto+Sans+Sinhala:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
+
+        * { box-sizing: border-box; }
+
         body {
-            font-family: 'Noto Sans Sinhala', 'Poppins', sans-serif;
+            font-family: 'Noto Sans Sinhala', 'Inter', sans-serif;
+            background: var(--off-white);
+            color: #0f172a;
+            transition: background 0.3s, color 0.3s;
         }
-        .title-font {
-            font-family: 'Gemunu Libre', 'Poppins', sans-serif;
+        .dark body { background: var(--dark-bg); color: var(--off-white); }
+
+        h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+
+        /* ─── Loader ─── */
+        #loader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #090d16;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 1.5rem;
+            transition: opacity 0.6s ease;
+        }
+        #loader.hide { opacity: 0; pointer-events: none; }
+
+        .loader-ring {
+            width: 60px; height: 60px;
+            border: 3px solid #1a2a0a;
+            border-top-color: #cfff00;
+            border-radius: 50%;
+            animation: spin 0.85s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .loader-bar { width: 180px; height: 3px; background: #1a2a0a; border-radius: 99px; overflow: hidden; }
+        .loader-bar-fill { height: 100%; background: linear-gradient(90deg, #cfff00, #86efac); border-radius: 99px; animation: fill 1.8s ease forwards; }
+        @keyframes fill { from { width: 0 } to { width: 100% } }
+
+        /* ─── Scroll Progress ─── */
+        #scroll-bar {
+            position: fixed; top: 0; left: 0; height: 3px; z-index: 9998;
+            background: linear-gradient(90deg, #cfff00, #86efac);
+            width: 0%; transition: width 0.1s linear;
+        }
+
+        /* ─── Accent text ─── */
+        .accent-text { color: #cfff00; }
+        .grad-text {
+            background: linear-gradient(135deg, #cfff00 0%, #86efac 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* ─── Glass Card ─── */
+        .glass-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(207,255,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 48px rgba(207,255,0,0.1);
+            border-color: rgba(207,255,0,0.3);
+        }
+        html:not(.dark) .glass-card {
+            background: #fff; border: 1px solid #e2e8f0;
+        }
+        html:not(.dark) .glass-card:hover {
+            box-shadow: 0 20px 40px rgba(132,204,22,0.15); border-color: #bef264;
+        }
+
+        /* ─── Buttons ─── */
+        .btn-accent {
+            background: #cfff00; color: #090d16;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            padding: 1rem 2.5rem; border-radius: 12px;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-accent:hover {
+            background: #b3db00; transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(207,255,0,0.35);
+        }
+        .btn-ghost {
+            border: 2px solid rgba(207,255,0,0.35); color: #cfff00;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            padding: 1rem 2.5rem; border-radius: 12px;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            text-decoration: none; background: rgba(207,255,0,0.04);
+            transition: background 0.2s, transform 0.2s;
+        }
+        .btn-ghost:hover { background: rgba(207,255,0,0.1); transform: translateY(-2px); }
+
+        /* ─── Pulse dot ─── */
+        .pulse-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #cfff00;
+            box-shadow: 0 0 0 0 rgba(207,255,0,0.5);
+            animation: pulse-anim 2s infinite;
+        }
+        @keyframes pulse-anim {
+            0% { box-shadow: 0 0 0 0 rgba(207,255,0,0.5); }
+            70% { box-shadow: 0 0 0 10px rgba(207,255,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(207,255,0,0); }
+        }
+
+        /* ─── Nav ─── */
+        #navbar { transition: background 0.3s, backdrop-filter 0.3s; }
+        #navbar.scrolled { backdrop-filter: blur(20px) !important; }
+
+        .nav-link { position: relative; padding-bottom: 2px; font-family: 'Outfit', sans-serif; font-weight: 600; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: #cfff00; border-radius: 1px;
+            transition: width 0.25s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ─── Section eyebrow ─── */
+        .eyebrow {
+            font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+            font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            color: #cfff00;
+        }
+
+        /* ─── Stats ─── */
+        .stat-num {
+            font-family: 'Outfit', sans-serif; font-size: 2.5rem; font-weight: 900;
+            background: linear-gradient(135deg, #cfff00, #86efac);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* ─── Service icon ─── */
+        .svc-icon {
+            width: 56px; height: 56px;
+            background: rgba(207,255,0,0.08);
+            border: 1px solid rgba(207,255,0,0.18);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 1.25rem;
+            transition: box-shadow 0.3s;
+        }
+        .glass-card:hover .svc-icon { box-shadow: 0 0 20px rgba(207,255,0,0.3); }
+
+        /* ─── Gallery ─── */
+        .gallery-img { overflow: hidden; border-radius: 16px; position: relative; }
+        .gallery-img img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-img:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(9,13,22,0.85) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.3s;
+            display: flex; align-items: flex-end; padding: 1rem;
+        }
+        .gallery-img:hover .gallery-overlay { opacity: 1; }
+
+        /* ─── BMI Result Colors ─── */
+        .bmi-underweight { color: #fbbf24; }
+        .bmi-normal { color: #cfff00; }
+        .bmi-over { color: #fb923c; }
+        .bmi-obese { color: #f87171; }
+
+        /* ─── Pricing card highlight ─── */
+        .pricing-featured {
+            border: 2px solid #cfff00 !important;
+            background: rgba(207,255,0,0.04) !important;
+        }
+        .pricing-badge {
+            background: #cfff00; color: #090d16;
+            font-family: 'Outfit', sans-serif; font-weight: 700;
+            font-size: 0.65rem; padding: 2px 10px; border-radius: 99px;
+            letter-spacing: 0.05em; text-transform: uppercase;
+        }
+
+        /* ─── Scroll hint ─── */
+        #scroll-hint { animation: bounce-y 2s infinite; }
+        @keyframes bounce-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+        /* ─── Mobile menu ─── */
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        #mobile-menu.open { max-height: 500px; }
+
+        /* ─── Hero canvas ─── */
+        #hero-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+
+        /* ─── Input focus ─── */
+        input:focus, textarea:focus {
+            outline: none !important;
+            border-color: #cfff00 !important;
+            box-shadow: 0 0 0 3px rgba(207,255,0,0.12);
+        }
+
+        /* ─── Reduced motion ─── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
         }
     </style>
 </head>
-<body class="bg-brand-lightBg text-brand-lightText dark:bg-brand-darkBg dark:text-brand-darkText min-h-screen selection:bg-brand-accent selection:text-[#090d16] overflow-x-hidden transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-[#090d16] text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<!-- ─── Loader ─── -->
+<div id="loader">
+<div style="font-family:'Outfit',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;letter-spacing:0.08em;">
+        COACH<span style="color:#cfff00">NISHA</span>
+</div>
+<div class="loader-ring"></div>
+<div class="loader-bar"><div class="loader-bar-fill"></div></div>
+<p style="font-family:'Inter',sans-serif;font-size:0.72rem;color:#4b5563;letter-spacing:0.06em;">Fitness Center · Sri Lanka</p>
+</div>
+<!-- ─── Scroll Progress ─── -->
+<div id="scroll-bar"></div>
+<!-- ════════════ NAVBAR ════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-white/5 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md" id="navbar">
+<div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+<!-- Logo -->
+<a class="flex items-center gap-3" href="#home">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
+<i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
+</div>
+<div>
+<div class="font-display font-black text-lg leading-none text-slate-900 dark:text-white tracking-wide">
+                    COACH<span class="accent-text">NISHA</span>
+</div>
+<div class="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">Fitness Center</div>
+</div>
+</a>
+<!-- Desktop Links -->
+<div class="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
+<a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#about">අප ගැන</a>
+<a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#services">සේවාවන්</a>
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-brand-darkBg/95 backdrop-blur-md border-b border-slate-200 dark:border-white/10 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" class="title-font text-3xl font-bold tracking-wider flex items-center gap-2 text-brand-lightText dark:text-brand-darkText">
-                <i class="fa-solid fa-dumbbell text-brand-accent animate-pulse"></i>
-                COACH<span class="text-brand-accent">NISHA</span>
+<a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#bmi">BMI ගණකය</a>
+<a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#schedule">වේලාවන්</a>
+<a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#contact">සම්බන්ධ වීමට</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle" title="Theme">
+<i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
+</button>
+<a class="hidden sm:inline-flex btn-accent text-sm py-2.5 px-5" href="#contact">
+<i class="fa-solid fa-arrow-trend-up text-xs"></i> දැන්ම එකතු වන්න
             </a>
+<button class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
+<i class="fa-solid fa-bars-staggered"></i>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="md:hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+<div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
+<a class="m-link hover:text-lime-500" href="#about">අප ගැන</a>
+<a class="m-link hover:text-lime-500" href="#services">සේවාවන්</a>
 
-            <!-- Desktop Menu -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#about" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">අප ගැන</a>
-                <a href="#services" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">සේවාවන්</a>
-                <a href="#bmi" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">BMI ගණකය</a>
-                <a href="#schedule" class="text-sm font-semibold tracking-wide hover:text-brand-accent transition-colors duration-300">වේලාවන්</a>
-                
-                <!-- Theme Toggle Button -->
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-lg hover:text-brand-accent transition-colors duration-300" title="තේමාව වෙනස් කරන්න">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </button>
-
-                <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-[#090d16] font-bold px-5 py-2.5 rounded-lg shadow-lg hover:shadow-brand-accent/20 transition-all duration-300 text-sm">සම්බන්ධ වීමට</a>
-            </nav>
-
-            <!-- Mobile Action Items -->
-            <div class="flex items-center gap-4 md:hidden">
-                <button onclick="toggleTheme()" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center text-md">
-                    <i id="theme-icon-mobile" class="fa-solid fa-moon"></i>
-                </button>
-                <button id="menu-btn" class="text-2xl focus:outline-none hover:text-brand-accent transition-colors">
-                    <i class="fa-solid fa-bars-staggered"></i>
-                </button>
+<a class="m-link hover:text-lime-500" href="#bmi">BMI ගණකය</a>
+<a class="m-link hover:text-lime-500" href="#schedule">වේලාවන්</a>
+<a class="btn-accent text-sm py-3 px-5 mt-1 justify-center" href="#contact">
+<i class="fa-solid fa-arrow-trend-up"></i> දැන්ම එකතු වන්න
+            </a>
+</div>
+</div>
+</nav>
+<!-- ════════════ HERO ════════════ -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16" id="home">
+<!-- BG Image -->
+<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&amp;fit=crop&amp;q=80&amp;w=1600'); filter:brightness(0.35) saturate(1.3)"></div>
+<!-- Dark gradient overlay -->
+<div class="absolute inset-0" style="background:linear-gradient(120deg,rgba(9,13,22,0.95) 0%,rgba(9,13,22,0.65) 55%,rgba(30,50,5,0.2) 100%)"></div>
+<!-- Particle Canvas -->
+<canvas id="hero-canvas"></canvas>
+<!-- Glow orbs -->
+<div class="absolute top-1/3 right-1/4 w-80 h-80 rounded-full opacity-8 blur-3xl pointer-events-none" style="background:radial-gradient(circle,rgba(207,255,0,0.15),transparent)"></div>
+<div class="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full opacity-8 blur-3xl pointer-events-none" style="background:radial-gradient(circle,rgba(134,239,172,0.12),transparent)"></div>
+<!-- Content -->
+<div class="relative z-10 max-w-7xl mx-auto px-5 w-full py-24">
+<div class="max-w-3xl" data-aos="fade-up" data-aos-duration="800">
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border text-xs font-semibold tracking-widest uppercase" style="border-color:rgba(207,255,0,0.3); background:rgba(207,255,0,0.08); color:#cfff00">
+<div class="pulse-dot"></div>
+                සිතට සහ ගතට උපරිම සුවතාවය
             </div>
-        </div>
-
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-lightCard dark:bg-brand-darkBg border-t border-slate-200 dark:border-white/5 px-6 py-6 space-y-4 absolute top-20 left-0 w-full transition-all duration-300 shadow-xl">
-            <a href="#about" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">අප ගැන</a>
-            <a href="#services" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">සේවාවන්</a>
-            <a href="#bmi" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">BMI ගණකය</a>
-            <a href="#schedule" class="mobile-link block text-base font-semibold hover:text-brand-accent py-2 border-b border-slate-100 dark:border-white/5">වේලාවන්</a>
-            <a href="#contact" class="mobile-link block bg-brand-accent text-[#090d16] text-center font-bold py-3 rounded-lg mt-4">සම්බන්ධ වීමට</a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-brand-darkBg">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center"></div>
-        <div class="absolute inset-0 bg-slate-950/75 dark:bg-[#090d16]/80"></div>
-        
-        <div class="max-w-4xl mx-auto px-6 text-center z-10 space-y-6">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-accent/20 border border-brand-accent/40 text-brand-accent text-xs md:text-sm font-semibold tracking-wide uppercase">
-                <i class="fa-solid fa-spa"></i> සිතට සහ ගතට උපරිම සුවතාවය
-            </div>
-            
-            <h1 class="title-font text-5xl md:text-7xl font-extrabold uppercase tracking-tight leading-tight md:leading-none text-white">
-                නිරෝගී සහ ශක්තිමත් <br class="hidden md:inline"><span class="text-brand-accent">දිවියකට මඟ</span>
-            </h1>
-            
-            <p class="text-slate-200 text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
-                ඔබේ ශරීරය වඩාත් ශක්තිමත්, ක්‍රියාශීලී සහ නිරෝගී කරගැනීමට අවශ්‍ය සියලුම නවීන පහසුකම් සහ පළපුරුදු සහතිකලත් උපදේශක සේවය දැන් එකම වහලක් යටින්.
+<h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
+<span class="block">නිරෝගී සහ</span>
+<span class="block grad-text">ශක්තිමත් දිවියකට</span>
+<span class="block">මඟ දෙමු.</span>
+</h1>
+<p class="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl mb-10">
+                ඔබේ ශරීරය ශක්තිමත්, ක්‍රියාශීලී සහ නිරෝගී කරගැනීමට <strong class="text-lime-300">නවීන පහසුකම්</strong> සහ <strong class="text-lime-300">පළපුරුදු සහතිකලත් කෝච්</strong> සේවය දැන් ලබාගන්න.
             </p>
-
-            <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accentHover text-[#090d16] text-lg font-bold px-8 py-4 rounded-xl shadow-lg shadow-brand-accent/20 transition-all duration-300 hover:scale-[1.02]">
-                    දැන්ම පැමිණෙන්න <i class="fa-solid fa-arrow-trend-up"></i>
+<div class="flex flex-col sm:flex-row gap-4 mb-10">
+<a class="btn-accent text-base" href="#contact">
+<i class="fa-solid fa-arrow-trend-up"></i> දැන්ම පැමිණෙන්න
                 </a>
-                <a href="#services" class="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-brand-accent/50 text-white hover:text-brand-accent text-lg font-bold px-8 py-4 rounded-xl transition-all duration-300">
-                    අපේ සේවාවන් බලන්න
+<a class="btn-ghost text-base" href="#services">
+<i class="fa-solid fa-grid-2 text-xs"></i> අපේ සේවාවන් බලන්න
                 </a>
-            </div>
-        </div>
-    </section>
+</div>
+<!-- Trust signals -->
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
+<span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-lime-400 text-xs"></i> නොමිලේ BMI පරීක්ෂාව</span>
+<span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-lime-400 text-xs"></i> සහතිකලත් Coach සේවාව</span>
+<span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-lime-400 text-xs"></i> ගැළපෙන සැලසුම්</span>
+</div>
+</div>
+</div>
+<!-- Scroll hint -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-50" id="scroll-hint">
+<span class="text-xs text-slate-400 tracking-widest uppercase">Scroll</span>
+<div class="w-px h-10" style="background:linear-gradient(to bottom, #cfff00, transparent)"></div>
+</div>
+</section>
+<!-- ════════════ STATS BAND ════════════ -->
+<section class="py-16 bg-white dark:bg-slate-900/50 border-y border-slate-100 dark:border-slate-800">
+<div class="max-w-5xl mx-auto px-5 grid grid-cols-2 md:grid-cols-4 gap-8 text-center" data-aos="fade-up">
+<div><div class="stat-num">5+</div><div class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">වසරක් අත්දැකීම</div></div>
+<div><div class="stat-num">300+</div><div class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">සාර්ථක සාමාජිකයින්</div></div>
+<div><div class="stat-num">100%</div><div class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">ව්‍යක්තිගත සැලසුම්</div></div>
+<div><div class="stat-num">3</div><div class="text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">සෙෂන් විකල්ප</div></div>
+</div>
+</section>
+<!-- ════════════ ABOUT ════════════ -->
+<section class="py-24 max-w-7xl mx-auto px-5" id="about">
+<div class="text-center mb-14" data-aos="fade-up">
+<span class="eyebrow">About Us</span>
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
+            අප <span class="grad-text">කවුද?</span>
+</h2>
+<div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+<p class="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
+            කෝච් නිශා ෆිට්නස් සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ශ්‍රී ලාංකීය ප්‍රමුඛතම ස්ථානයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+<div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="0">
+<div class="svc-icon mx-auto"><i class="fa-solid fa-trophy accent-text"></i></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">අපගේ දැක්ම</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                උසස්ම මට්ටමේ ව්‍යායාම පරිසරයක් ලබාදෙමින් ජනතාව නිරෝගී සමාජයක් බවට පත්කිරීම.
+            </p>
+</div>
+<div class="glass-card rounded-2xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+<div class="svc-icon mx-auto"><i class="fa-solid fa-heart-pulse accent-text"></i></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">අපගේ මෙහෙවර</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                සෑම කෙනෙකුටම ගැලපෙන ව්‍යායාම සහ පෝෂණ උපදෙස් ආරක්ෂිතව ලබාදීම.
+            </p>
+</div>
+</div>
+</section>
+<!-- ════════════ SERVICES ════════════ -->
+<section class="py-24 dark:bg-slate-950/60 bg-slate-50 border-y border-slate-100 dark:border-slate-800/50" id="services">
+<div class="max-w-7xl mx-auto px-5">
+<div class="text-center mb-14" data-aos="fade-up">
+<span class="eyebrow">Our Services</span>
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
+                අප ලබාදෙන <span class="grad-text">සේවාවන්</span>
+</h2>
+<div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glass-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="0">
+<div class="svc-icon"><i class="fa-solid fa-weight-hanging accent-text"></i></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">ශක්ති වර්ධනය</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                    මාංශ පේශි වර්ධනය සහ ශරීර ශක්තිය සඳහා විශේෂ Weight Training ක්‍රමවේද.
+                </p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Weight Training</span>
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Muscle Building</span>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+<div class="svc-icon"><i class="fa-solid fa-person-running accent-text"></i></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">කාඩිඕ පුහුණුව</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                    හෘදයේ නිරෝගීතාවය සහ මේදය දහනය කර බර පාලනය කරන නවීන Cardio ව්‍යායාම.
+                </p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Cardio</span>
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Fat Burn</span>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+<div class="svc-icon"><i class="fa-solid fa-users accent-text"></i></div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">කණ්ඩායම් පන්ති</h3>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                    Yoga, Zumba සහ Group Workout — සාමූහිකව ශරීරය හැඩ කරගන්න.
+                </p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Yoga</span>
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Zumba</span>
+<span class="text-xs px-3 py-1 rounded-full bg-lime-50 dark:bg-lime-950/40 text-lime-700 dark:text-lime-300 border border-lime-200 dark:border-lime-800">Group Workout</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════ PRICING ════════════ -->
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center">
-            <div class="max-w-3xl space-y-10">
-                <div class="space-y-4 flex flex-col items-center">
-                    <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">අප <span class="text-brand-accent">කවුද?</span></h2>
-                    <div class="w-16 h-1 bg-brand-accent rounded"></div>
-                    <p class="text-slate-600 dark:text-brand-gray text-base leading-relaxed">
-                        කෝච් නිශා ෆิต්නස් සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ශ්‍රී ලාංකීය ප්‍රමුඛතම ස්ථානයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
-                    </p>
-                </div>
+<!-- ════════════ BMI CALCULATOR ════════════ -->
+<section class="py-24 bg-slate-50 dark:bg-slate-950/60 border-y border-slate-100 dark:border-slate-800/50" id="bmi">
+<div class="max-w-4xl mx-auto px-5">
+<div class="text-center mb-14" data-aos="fade-up">
+<span class="eyebrow">Health Check</span>
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
+                BMI <span class="grad-text">ගණකය</span>
+</h2>
+<div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+<p class="text-slate-500 dark:text-slate-400 mt-4 text-sm">ඔබේ බර සෞඛ්‍ය සම්පන්නද කියා දැන්ම නොමිලේ ගණනය කරන්න.</p>
+</div>
+<div class="glass-card rounded-3xl p-6 md:p-10 max-w-2xl mx-auto" data-aos="fade-up">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+<!-- Inputs -->
+<div class="space-y-4">
+<div>
+<label class="block text-xs font-semibold mb-2 text-slate-600 dark:text-slate-300">බර (kg)</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white" id="weight" placeholder="උදා: 70" type="number"/>
+</div>
+<div>
+<label class="block text-xs font-semibold mb-2 text-slate-600 dark:text-slate-300">උස (cm)</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white" id="height" placeholder="උදා: 172" type="number"/>
+</div>
+<button class="btn-accent w-full justify-center py-3 text-sm" onclick="calculateBMI()">
+<i class="fa-solid fa-calculator"></i> ගණනය කරන්න
+                    </button>
+</div>
+<!-- Result -->
+<div class="rounded-2xl p-6 border border-slate-100 dark:border-slate-700 bg-white dark:bg-slate-900 flex flex-col items-center justify-center text-center space-y-3 min-h-[180px]">
+<div class="text-xs uppercase tracking-widest text-slate-400 font-bold">ඔබේ BMI අගය</div>
+<div class="text-5xl font-black accent-text" id="bmi-result">--</div>
+<div class="text-sm font-medium text-slate-500 dark:text-slate-400 w-full" id="bmi-status">දත්ත ඇතුළත් කරන්න</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════ GALLERY ════════════ -->
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                    <div class="bg-brand-lightCard dark:bg-brand-darkCard p-8 rounded-2xl border border-slate-200 dark:border-white/5 shadow-md transition-colors duration-300 flex flex-col items-center justify-center">
-                        <div class="w-14 h-14 rounded-xl bg-brand-accent/10 dark:bg-brand-accent/20 flex items-center justify-center text-[#090d16] dark:text-brand-accent text-2xl mb-4">
-                            <i class="fa-solid fa-trophy"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">අපගේ දැක්ම</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-sm leading-relaxed">
-                            උසස්ම මට්ටමේ ව්‍යායාම පරිසරයක් ලබාදෙමින් ජනතාව නිරෝගී සමාජයක් බවට පත්කිරීම.
+<!-- ════════════ SCHEDULE ════════════ -->
+<section class="py-24 bg-slate-50 dark:bg-slate-950/60 border-y border-slate-100 dark:border-slate-800/50" id="schedule">
+<div class="max-w-7xl mx-auto px-5">
+<div class="text-center mb-14" data-aos="fade-up">
+<span class="eyebrow">Timetable</span>
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
+                අපගේ <span class="grad-text">කාලසටහන</span>
+</h2>
+<div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+<p class="text-amber-500 text-xs font-semibold mt-3"><i class="fa-solid fa-triangle-exclamation"></i> කෝච් විසින් අවශ්‍යතාවය අනුව කාලසටහන වෙනස් කළ හැක.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
+<div class="glass-card rounded-2xl p-8" data-aos="fade-up">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">සතියේ දිනවල</h3>
+<p class="text-xs text-slate-400 mb-5 font-medium">සඳුදා සිට සිකුරාදා (බදාදා හැර)</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center py-3 px-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+<span class="font-semibold text-sm text-slate-700 dark:text-slate-200">Session 01</span>
+<span class="font-bold text-sm accent-text">04:00 PM – 06:00 PM</span>
+</div>
+<div class="flex justify-between items-center py-3 px-4 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-700">
+<span class="font-semibold text-sm text-slate-700 dark:text-slate-200">Session 02</span>
+<span class="font-bold text-sm accent-text">06:00 PM – 08:00 PM</span>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-8 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1">සති අන්තය</h3>
+<p class="text-xs text-slate-400 mb-5 font-medium">සෙනසුරාදා සහ ඉරිදා</p>
+<div class="p-4 rounded-xl border border-amber-500/20 bg-amber-500/5">
+<h4 class="font-bold text-amber-500 text-sm mb-2"><i class="fa-solid fa-comments"></i> කෝච් සමඟ සාකච්ඡා කරන්න</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs leading-relaxed">
+                            සති අන්තයේ පැමිණීමට බලාපොරොත්තු වේ නම්, කෝච් සමඟ කතා කර ඔබට පහසු වේලාවක් කලින් වෙන් කරවා ගන්න.
                         </p>
-                    </div>
-
-                    <div class="bg-brand-lightCard dark:bg-brand-darkCard p-8 rounded-2xl border border-slate-200 dark:border-white/5 shadow-md transition-colors duration-300 flex flex-col items-center justify-center">
-                        <div class="w-14 h-14 rounded-xl bg-brand-accent/10 dark:bg-brand-accent/20 flex items-center justify-center text-[#090d16] dark:text-brand-accent text-2xl mb-4">
-                            <i class="fa-solid fa-heart-pulse"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-3">අපගේ මෙහෙවර</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-sm leading-relaxed">
-                            සෑම කෙනෙකුටම ගැලපෙන ව්‍යායාම සහ පෝෂණ උපදෙස් ආරක්ෂිතව ලබාදීම.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-slate-50 dark:bg-brand-darkCard/20 border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="space-y-4 mb-12">
-                <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">අප ලබාදෙන <span class="text-brand-accent">සේවාවන්</span></h2>
-                <div class="w-16 h-1 bg-brand-accent rounded"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-8 rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm flex flex-col justify-between min-h-[220px] transition-colors duration-300">
-                    <div>
-                        <div class="text-[#090d16] dark:text-brand-accent text-3xl mb-4"><i class="fa-solid fa-weight-hanging"></i></div>
-                        <h3 class="font-bold mb-2 text-md">ශක්ති වර්ධනය</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">මාංශ පේශි වර්ධනය සහ ශරීර ශක්තිය සඳහා විශේෂ බර ඉසිලීමේ (Weight Training) ක්‍රමවේද.</p>
-                    </div>
-                </div>
-
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-8 rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm flex flex-col justify-between min-h-[220px] transition-colors duration-300">
-                    <div>
-                        <div class="text-[#090d16] dark:text-brand-accent text-3xl mb-4"><i class="fa-solid fa-person-running"></i></div>
-                        <h3 class="font-bold mb-2 text-md">කාඩිඕ පුහුණුව (Cardio)</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">හෘදයේ නිරෝගීතාවය සහ මේදය දහනය කර බර පාලනය කරන නවීන කාඩිඕ ව්‍යායාම.</p>
-                    </div>
-                </div>
-
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-8 rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm flex flex-col justify-between min-h-[220px] transition-colors duration-300">
-                    <div>
-                        <div class="text-[#090d16] dark:text-brand-accent text-3xl mb-4"><i class="fa-solid fa-users"></i></div>
-                        <h3 class="font-bold mb-2 text-md">කණ්ඩායම් පන්ති</h3>
-                        <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">යෝග (Yoga), සූම්බා (Zumba) සහ වෙනත් සාමාන්‍ය ව්‍යායාම (Workouts) සමඟින් හැඩවෙන්න.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- BMI Calculator Section -->
-    <section id="bmi" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center">
-            <div class="max-w-3xl w-full space-y-10 text-center flex flex-col items-center">
-                
-                <div class="space-y-4 flex flex-col items-center">
-                    <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">BMI <span class="text-brand-accent">ගණකය</span></h2>
-                    <div class="w-16 h-1 bg-brand-accent rounded"></div>
-                    <p class="text-slate-600 dark:text-brand-gray text-sm max-w-xl">
-                        ඔබේ බර සෞඛ්‍ය සම්පන්නද කියා දැන්ම නොමිලේම ගණනය කර බලන්න.
-                    </p>
-                </div>
-
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl transition-colors duration-300 w-full max-w-2xl">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        
-                        <!-- Inputs Side -->
-                        <div class="space-y-4 text-left">
-                            <div>
-                                <label class="block text-xs font-semibold mb-1 text-slate-700 dark:text-slate-300" for="weight">බර (kg)</label>
-                                <input type="number" id="weight" placeholder="උදා: 70" class="w-full bg-slate-50 dark:bg-brand-darkBg border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-accent text-sm text-brand-lightText dark:text-white">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-semibold mb-1 text-slate-700 dark:text-slate-300" for="height">උස (cm)</label>
-                                <input type="number" id="height" placeholder="උදා: 172" class="w-full bg-slate-50 dark:bg-brand-darkBg border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-accent text-sm text-brand-lightText dark:text-white">
-                            </div>
-                            <button onclick="calculateBMI()" class="w-full bg-brand-accent hover:bg-brand-accentHover text-[#090d16] font-bold py-3 rounded-xl transition-all text-sm shadow-md">
-                                ගණනය කරන්න
-                            </button>
-                        </div>
-
-                        <!-- Result Display Side -->
-                        <div class="bg-slate-100 dark:bg-brand-darkBg/50 p-6 rounded-2xl border border-slate-200 dark:border-white/5 flex flex-col justify-center items-center text-center space-y-3 min-h-[180px]">
-                            <div class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">ඔබේ BMI අගය</div>
-                            <div id="bmi-result" class="text-5xl font-extrabold text-[#090d16] dark:text-brand-accent">00.0</div>
-                            <div id="bmi-status" class="text-sm font-semibold text-slate-800 dark:text-slate-200 w-full">දත්ත ඇතුළත් කරන්න</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Class Schedule Section -->
-    <section id="schedule" class="py-24 bg-slate-50 dark:bg-brand-darkCard/20 border-b border-slate-200 dark:border-white/5 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="space-y-4 mb-12">
-                <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">අපගේ <span class="text-brand-accent">කාලසටහන</span></h2>
-                <div class="w-16 h-1 bg-brand-accent rounded"></div>
-                <p class="text-xs text-amber-500 font-semibold"><i class="fa-solid fa-triangle-exclamation"></i> කෝච් විසින් අවශ්‍යතාවය අනුව කාලසටහන වෙනස් කළ හැක.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Weekdays Card -->
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-300">
-                    <h3 class="text-xl font-bold text-[#090d16] dark:text-brand-accent mb-4 border-b border-slate-200 dark:border-white/10 pb-2">සතියේ දිනවල (Weekdays)</h3>
-                    <p class="text-xs text-slate-400 mb-4 font-semibold">(සඳුදා සිට සිකුරාදා දක්වා - බදාදා හැර)</p>
-                    
-                    <div class="space-y-3 text-sm">
-                        <div class="flex justify-between items-center py-2.5 px-3 bg-slate-50 dark:bg-brand-darkBg/50 rounded-xl">
-                            <span class="font-bold">පළමු සෙෂන් එක (Session 01)</span>
-                            <span class="text-slate-600 dark:text-brand-accent font-bold">04:00 PM - 06:00 PM</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2.5 px-3 bg-slate-50 dark:bg-brand-darkBg/50 rounded-xl">
-                            <span class="font-bold">දෙවන සෙෂන් එක (Session 02)</span>
-                            <span class="text-slate-600 dark:text-brand-accent font-bold">06:00 PM - 08:00 PM</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Weekend Card -->
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-300 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-[#090d16] dark:text-brand-accent mb-4 border-b border-slate-200 dark:border-white/10 pb-2">සති අන්තය (Weekend)</h3>
-                        <p class="text-xs text-slate-400 mb-4 font-semibold">(සෙනසුරාදා සහ ඉරිදා)</p>
-                        
-                        <div class="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl space-y-2">
-                            <h4 class="font-bold text-amber-500 text-sm"><i class="fa-solid fa-comments"></i> කෝච් සමඟ සාකච්ඡා කර වේලාවක් වෙන් කරගන්න</h4>
-                            <p class="text-slate-600 dark:text-brand-gray text-xs leading-relaxed">
-                                සති අන්තයේ පුහුණුවීම් සඳහා පැමිණීමට බලාපොරොත්තු වේ නම්, කෝච් (Coach) සමඟ කතා කර ඔබට පහසු වේලාවක් කලින් වෙන් කරවාගත හැක.
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="pt-4">
-                        <a href="#contact" class="block text-center bg-brand-accent hover:bg-brand-accentHover text-[#090d16] font-bold py-2.5 rounded-xl text-xs transition-all">
-                            දැන්ම වේලාවක් වෙන් කරගන්න <i class="fa-solid fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-brand-lightBg dark:bg-brand-darkBg transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-                <h2 class="title-font text-4xl md:text-5xl font-bold uppercase">සම්බන්ධ වීමට</h2>
-                <div class="w-16 h-1 bg-brand-accent mx-auto rounded"></div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4 p-5 bg-brand-lightCard dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm">
-                        <div class="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center text-brand-accent text-xl">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div>
-                            <div class="text-[10px] text-slate-400 font-bold uppercase">දුරකථන අංකය</div>
-                            <div class="text-lg font-bold">+94 76 2204614</div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-4 p-5 bg-brand-lightCard dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm">
-                        <div class="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center text-brand-accent text-xl">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div>
-                            <div class="text-[10px] text-slate-400 font-bold uppercase">විද්‍යුත් තැපෑල</div>
-                            <div class="text-lg font-bold">info@coachnishafitness.lk</div>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-4 p-5 bg-brand-lightCard dark:bg-brand-darkCard rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm">
-                        <div class="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center text-brand-accent text-xl">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div>
-                            <div class="text-[10px] text-slate-400 font-bold uppercase">ලිපිනය</div>
-                            <div class="text-md font-bold">නො. 120, ගාලු පාර, කොළඹ 03.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Form Displaying -->
-                <div class="bg-brand-lightCard dark:bg-brand-darkCard p-6 rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl relative overflow-hidden">
-                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-semibold mb-1" for="name">ඔබේ නම</label>
-                            <input type="text" id="name" required placeholder="කසුන් පෙරේරා" class="w-full bg-slate-50 dark:bg-brand-darkBg border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-accent text-sm text-brand-lightText dark:text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1" for="phone">දුරකථන අංකය</label>
-                            <input type="tel" id="phone" required placeholder="077 123 4567" class="w-full bg-slate-50 dark:bg-brand-darkBg border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-accent text-sm text-brand-lightText dark:text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold mb-1" for="msg">ඔබට අවශ්‍ය කුමක්ද?</label>
-                            <textarea id="msg" rows="2" placeholder="ගැටලුවක් ඇත්නම් මෙහි සටහන් කරන්න..." class="w-full bg-slate-50 dark:bg-brand-darkBg border border-slate-200 dark:border-white/10 rounded-xl px-4 py-2.5 focus:outline-none focus:border-brand-accent text-sm text-brand-lightText dark:text-white"></textarea>
-                        </div>
-                        <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentHover text-[#090d16] font-bold py-3 rounded-xl transition-all text-sm">
-                            විස්තර යොමු කරන්න
-                        </button>
-                    </form>
-
-                    <div id="success-box" class="hidden absolute inset-0 bg-brand-lightCard dark:bg-brand-darkCard p-6 flex flex-col justify-center items-center text-center space-y-3 z-20">
-                        <div class="w-16 h-16 bg-brand-accent/20 rounded-full flex items-center justify-center text-brand-accent text-3xl animate-bounce">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <h4 class="text-xl font-bold">ස්තූතියි!</h4>
-                        <p class="text-slate-500 text-xs leading-relaxed max-w-xs">
-                            ඔබගේ විස්තර සාර්ථකව ලැබුණා. අපගේ නියෝජිතයෙකු ඉක්මනින්ම කතා කරයි.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="bg-gradient-to-r from-amber-400 via-brand-gold to-yellow-500 text-slate-950 py-10 font-medium border-t-4 border-white/20 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left space-y-1">
-                <h4 class="title-font text-2xl font-bold tracking-wider text-slate-950">COACH<span class="text-white">NISHA</span></h4>
-                <p class="text-[11px] text-slate-900 font-semibold">&copy; 2026 කෝච් නිශා ෆිට්නස් සෙන්ටර්. සියලුම හිමිකම් ඇවිරිණි.</p>
-            </div>
-            
-            <div class="flex justify-center gap-4">
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-950 text-brand-gold hover:bg-white hover:text-slate-950 flex items-center justify-center text-md transition-all shadow-md hover:scale-110">
-                    <i class="fa-brands fa-facebook-f"></i>
+</div>
+</div>
+<a class="btn-accent text-sm mt-6 justify-center py-3" href="#contact">
+<i class="fa-solid fa-calendar-check"></i> දැන්ම වේලාවක් වෙන් කරගන්න
                 </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-950 text-brand-gold hover:bg-white hover:text-slate-950 flex items-center justify-center text-md transition-all shadow-md hover:scale-110">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" class="w-10 h-10 rounded-full bg-slate-950 text-brand-gold hover:bg-white hover:text-slate-950 flex items-center justify-center text-md transition-all shadow-md hover:scale-110">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════ CONTACT ════════════ -->
+<section class="py-24 max-w-7xl mx-auto px-5" id="contact">
+<div class="text-center mb-14" data-aos="fade-up">
+<span class="eyebrow">Get In Touch</span>
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
+            සම්බන්ධ <span class="grad-text">වීමට</span>
+</h2>
+<div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
+<!-- Contact Info -->
+<div class="space-y-5" data-aos="fade-up">
+<div class="glass-card rounded-2xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(207,255,0,0.1); border:1px solid rgba(207,255,0,0.2)">
+<i class="fa-solid fa-phone accent-text"></i>
+</div>
+<div>
+<div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">දුරකථන</div>
+<div class="text-lg font-bold text-slate-900 dark:text-white">+94 76 220 4614</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(207,255,0,0.1); border:1px solid rgba(207,255,0,0.2)">
+<i class="fa-solid fa-envelope accent-text"></i>
+</div>
+<div>
+<div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">විද්‍යුත් තැපෑල</div>
+<div class="text-base font-bold text-slate-900 dark:text-white">info@coachnishafitness.lk</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-5 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(207,255,0,0.1); border:1px solid rgba(207,255,0,0.2)">
+<i class="fa-solid fa-location-dot accent-text"></i>
+</div>
+<div>
+<div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">ලිපිනය</div>
+<div class="text-base font-bold text-slate-900 dark:text-white">නො. 120, ගාලු පාර, කොළඹ 03</div>
+</div>
+</div>
+<!-- WhatsApp direct -->
+<a class="flex items-center gap-3 p-5 rounded-2xl border border-green-500/30 bg-green-500/5 hover:bg-green-500/10 transition group" href="https://wa.me/94762204614" target="_blank">
+<i class="fa-brands fa-whatsapp text-2xl text-green-400"></i>
+<div>
+<div class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">WhatsApp</div>
+<div class="text-base font-bold text-green-400 group-hover:underline">+94 76 220 4614</div>
+</div>
+</a>
+</div>
+<!-- Form -->
+<div class="glass-card rounded-3xl p-8 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+<form class="space-y-4" id="contact-form" onsubmit="handleFormSubmit(event)">
+<div>
+<label class="block text-xs font-semibold mb-2 text-slate-600 dark:text-slate-300">ඔබේ නම</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white" id="name" placeholder="කසුන් පෙරේරා" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold mb-2 text-slate-600 dark:text-slate-300">දුරකථන අංකය</label>
+<input class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white" id="phone" placeholder="077 123 4567" required="" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-semibold mb-2 text-slate-600 dark:text-slate-300">ඔබට අවශ්‍ය කුමක්ද?</label>
+<textarea class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white resize-none" id="msg" placeholder="ගැටලුවක් ඇත්නම් සටහන් කරන්න..." rows="3"></textarea>
+</div>
+<button class="btn-accent w-full justify-center py-3 text-sm" type="submit">
+<i class="fa-brands fa-whatsapp text-base"></i> WhatsApp හරහා යොමු කරන්න
+                </button>
+</form>
+<!-- Success overlay -->
+<div class="hidden absolute inset-0 rounded-3xl flex flex-col items-center justify-center text-center space-y-4 z-20 p-8" id="success-box" style="background:rgba(9,13,22,0.95)">
+<div class="w-16 h-16 rounded-full flex items-center justify-center text-3xl" style="background:rgba(207,255,0,0.15); border:1px solid rgba(207,255,0,0.3)">
+<i class="fa-solid fa-circle-check accent-text"></i>
+</div>
+<h4 class="text-xl font-black text-white">ස්තූතියි! 🎉</h4>
+<p class="text-slate-400 text-xs leading-relaxed max-w-xs">
+                    ඔබගේ විස්තර WhatsApp හරහා ලැබුණා. අපගේ නියෝජිතයෙකු ඉක්මනින්ම කතා කරයි.
+                </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="bg-[#090d16] border-t border-slate-800 text-slate-400">
+<div class="max-w-7xl mx-auto px-5 py-12">
+<div class="flex flex-col md:flex-row justify-between items-center gap-8">
+<!-- Brand -->
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
+<i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
+</div>
+<span class="font-black text-xl text-white" style="font-family:'Outfit',sans-serif">
+                        COACH<span class="accent-text">NISHA</span>
+</span>
+</div>
+<p class="text-xs text-slate-500">Professional Fitness Center · Sri Lanka</p>
+</div>
+<!-- Links -->
+<div class="flex gap-6 text-sm font-medium">
+<a class="hover:text-lime-400 transition" href="#about">අප ගැන</a>
+<a class="hover:text-lime-400 transition" href="#services">සේවාවන්</a>
+<a class="hover:text-lime-400 transition" href="#bmi">BMI</a>
+<a class="hover:text-lime-400 transition" href="#contact">සම්බන්ධ වීමට</a>
+</div>
+<!-- Social -->
+<div class="flex gap-3">
+<a class="w-9 h-9 rounded-lg border border-slate-700 flex items-center justify-center hover:border-blue-500 hover:text-blue-400 transition" href="#">
+<i class="fa-brands fa-facebook text-sm"></i>
+</a>
+<a class="w-9 h-9 rounded-lg border border-slate-700 flex items-center justify-center hover:border-pink-500 hover:text-pink-400 transition" href="#">
+<i class="fa-brands fa-instagram text-sm"></i>
+</a>
+<a class="w-9 h-9 rounded-lg border border-slate-700 flex items-center justify-center hover:border-red-500 hover:text-red-400 transition" href="#">
+<i class="fa-brands fa-youtube text-sm"></i>
+</a>
+<a class="w-9 h-9 rounded-lg border border-slate-700 flex items-center justify-center hover:border-green-500 hover:text-green-400 transition" href="https://wa.me/94762204614">
+<i class="fa-brands fa-whatsapp text-sm"></i>
+</a>
+</div>
+</div>
+<div class="border-t border-slate-800 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-slate-600">
+<p>© 2026 කෝච් නිශා ෆිට්නස් සෙන්ටර්. සියලුම හිමිකම් ඇවිරිණි.</p>
+<p>Built with ❤️ for a healthier Sri Lanka 💪</p>
+</div>
+</div>
+</footer>
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+/* ─── Loader ─── */
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const l = document.getElementById('loader');
+        l.classList.add('hide');
+        setTimeout(() => l.style.display = 'none', 700);
+    }, 1950);
+});
 
-    <!-- JavaScript Interactivity -->
-    <script>
-        // 1. WhatsApp Contact Form Handler (Fixed without "#")
-        function handleFormSubmit(event) {
-    event.preventDefault();
+/* ─── AOS ─── */
+AOS.init({ once: true, offset: 60, easing: 'ease-out-cubic' });
 
-    const form = document.getElementById("contact-form");
+/* ─── Scroll Progress ─── */
+window.addEventListener('scroll', () => {
+    const st = document.documentElement.scrollTop;
+    const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('scroll-bar').style.width = (st / sh * 100) + '%';
+    document.getElementById('navbar').classList.toggle('scrolled', st > 60);
+});
 
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const msg = document.getElementById("msg").value.trim();
+/* ─── Theme Toggle ─── */
+const htmlEl = document.documentElement;
+const themeBtn = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
 
-    if (!name || !phone) {
-        alert("කරුණාකර නම සහ දුරකථන අංකය ඇතුළත් කරන්න.");
+// Restore saved preference
+if (localStorage.getItem('cn-theme') === 'light') {
+    htmlEl.classList.remove('dark');
+    themeIcon.className = 'fa-solid fa-sun text-sm';
+}
+
+themeBtn.addEventListener('click', () => {
+    const isDark = htmlEl.classList.toggle('dark');
+    themeIcon.className = isDark ? 'fa-solid fa-moon text-sm' : 'fa-solid fa-sun text-sm';
+    localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
+});
+
+/* ─── Mobile Menu ─── */
+document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('open');
+});
+document.querySelectorAll('.m-link').forEach(l => {
+    l.addEventListener('click', () => document.getElementById('mobile-menu').classList.remove('open'));
+});
+
+/* ─── Particle Canvas (fitness-themed: small dots rising = energy) ─── */
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+resize(); window.addEventListener('resize', resize);
+
+const particles = [];
+function spawnParticle() {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        size: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.8 + 0.3,
+        life: 1,
+        decay: Math.random() * 0.004 + 0.002,
+        color: Math.random() > 0.6 ? '#cfff00' : '#86efac'
+    });
+}
+
+function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (Math.random() < 0.15) spawnParticle();
+    particles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + Math.floor(p.life * 160).toString(16).padStart(2, '0');
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        p.y -= p.speed;
+        p.x += (Math.random() - 0.5) * 0.4;
+        p.life -= p.decay;
+        if (p.life <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* ─── BMI Calculator ─── */
+function calculateBMI() {
+    const w = parseFloat(document.getElementById('weight').value);
+    const h = parseFloat(document.getElementById('height').value);
+    const result = document.getElementById('bmi-result');
+    const status = document.getElementById('bmi-status');
+
+    if (!w || !h || w <= 0 || h <= 0) {
+        result.textContent = '--';
+        status.innerHTML = '<span class="text-red-500 font-bold">නිවැරදි දත්ත ඇතුළත් කරන්න!</span>';
         return;
     }
 
-    let customerCount = Number(localStorage.getItem("total_customers")) || 0;
-    customerCount++;
-    localStorage.setItem("total_customers", customerCount);
+    const bmi = (w / ((h / 100) ** 2)).toFixed(1);
+    result.textContent = bmi;
 
-    const customerID = "ID" + String(customerCount).padStart(4, "0");
-
-    const now = new Date();
-    const currentDate = now.toLocaleDateString("en-GB");
-    const currentTime = now.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-    });
-
-    const whatsappNumber = "94762204614";
-
-    const message =
-`🔥 නව පණිවිඩයක් - Coach Nisha Fitness
-
-🆔 Customer ID : ${customerID}
-
-👤 නම : ${name}
-
-📞 දුරකථන අංකය : ${phone}
-
-💬 අවශ්‍යතාවය :
-${msg || "නැත"}
-
-📅 දිනය : ${currentDate}
-
-🕒 වේලාව : ${currentTime}`;
-
-    console.log(message);
-
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-
-    window.open(url, "_blank");
-
-    form.reset();
-
-    const successBox = document.getElementById("success-box");
-    if (successBox) {
-        successBox.classList.remove("hidden");
-        setTimeout(() => {
-            successBox.classList.add("hidden");
-        }, 4000);
+    let html = '';
+    if (bmi < 18.5) {
+        html = `<div class="space-y-1"><div class="bmi-underweight font-bold">බර අඩුයි (Underweight) ⚠️</div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">ශරීරය නිරෝගීව ශක්තිමත් කරගැනීමට <strong class="accent-text">අදම අප හා එකතු වන්න!</strong></p></div>`;
+    } else if (bmi < 25) {
+        html = `<div class="space-y-1"><div class="bmi-normal font-bold">සාමාන්‍ය බර (Healthy) ✅</div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">නියමයි! මේ නිරෝගී බව දිගටම පවත්වාගෙන යෑමට <strong class="accent-text">අප හා එකතු වන්න!</strong></p></div>`;
+    } else if (bmi < 30) {
+        html = `<div class="space-y-1"><div class="bmi-over font-bold">අධික බර (Overweight) ⚠️</div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">ක්‍රමවත් ව්‍යායාම මඟින් ශරීරය හැඩ කරගැනීමට <strong class="accent-text">අදම එකතු වන්න!</strong></p></div>`;
+    } else {
+        html = `<div class="space-y-1"><div class="bmi-obese font-bold">ස්ථූලතාවය (Obese) 🚨</div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">කඩිනමින් බර පාලනය කර නිරෝගී වීමට <strong class="accent-text">අදම අප හා එකතු වන්න!</strong></p></div>`;
     }
+    status.innerHTML = html;
 }
 
-        // 2. BMI Calculation Function
-        function calculateBMI() {
-            const weightInput = document.getElementById('weight').value;
-            const heightInput = document.getElementById('height').value;
-            const resultDisplay = document.getElementById('bmi-result');
-            const statusDisplay = document.getElementById('bmi-status');
+/* ─── Contact Form → WhatsApp ─── */
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+    if (!name || !phone) { alert('කරුණාකර නම සහ දුරකථන අංකය ඇතුළත් කරන්න.'); return; }
 
-            if (!weightInput || !heightInput || weightInput <= 0 || heightInput <= 0) {
-                resultDisplay.innerText = "--.-";
-                statusDisplay.innerHTML = `<span class="text-red-500 font-bold">කරුණාකර නිවැරදි දත්ත ඇතුළත් කරන්න!</span>`;
-                return;
-            }
+    let count = Number(localStorage.getItem('cn_customers') || 0) + 1;
+    localStorage.setItem('cn_customers', count);
+    const id = 'ID' + String(count).padStart(4, '0');
+    const now = new Date();
+    const date = now.toLocaleDateString('en-GB');
+    const time = now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit', hour12:true });
 
-            const heightInMeters = heightInput / 100;
-            const bmi = (weightInput / (heightInMeters * heightInMeters)).toFixed(1);
-            resultDisplay.innerText = bmi;
+    const text = `💪 නව සාමාජිකයෙකු - Coach Nisha Fitness\n\n🆔 Customer ID: ${id}\n👤 නම: ${name}\n📞 දුරකථන: ${phone}\n💬 අවශ්‍යතාවය:\n${msg || 'නැත'}\n📅 දිනය: ${date}\n🕒 වේලාව: ${time}`;
 
-            let statusText = "";
-            
-            if (bmi < 18.5) {
-                statusText = `
-                    <div class="space-y-2">
-                        <div class="text-amber-500 font-bold text-base">බර අඩුයි (Underweight) ⚠️</div>
-                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">ඔබේ ශරීරයේ බර නිසි ප්‍රමාණයට වඩා අඩුයි. නිවැරදි ව්‍යායාම සහ පෝෂණ සැලසුමක් මඟින් නිරෝගීව බර වැඩි කරගැනීමට <strong>අදම අප හා එක්වන්න!</strong></p>
-                    </div>`;
-            } 
-            else if (bmi >= 18.5 && bmi < 25) {
-                statusText = `
-                    <div class="space-y-2">
-                        <div class="text-emerald-500 font-bold text-base">සාමාන්‍ය බර (Healthy) ✅</div>
-                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">නියමයි! ඔබේ බර ඉතාමත් සෞඛ්‍ය සම්පන්න මට්ටමක පවතිනවා. මේ නිරෝගී බව සහ ශරීරයේ හැඩය දිගටම පවත්වාගෙන යෑම සඳහා <strong>අප හා එක්වන්න!</strong></p>
-                    </div>`;
-            } 
-            else if (bmi >= 25 && bmi < 30) {
-                statusText = `
-                    <div class="space-y-2">
-                        <div class="text-orange-500 font-bold text-base">අධික බර (Overweight) ⚠️</div>
-                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">ඔබේ ශරීරයේ බර නිසි ප්‍රමාණයට වඩා වැඩියි. ක්‍රමවත් ව්‍යායාම මඟින් අනවශ්‍ය මේදය දහනය කර සිරුර හැඩ කරගැනීමට <strong>අදම අප හා එක්වන්න!</strong></p>
-                    </div>`;
-            } 
-            else {
-                statusText = `
-                    <div class="space-y-2">
-                        <div class="text-red-500 font-bold text-base">අධික ස්ථූලතාවය (Obese) 🚨</div>
-                        <p class="text-xs text-slate-600 dark:text-brand-gray px-2">ඔබේ බර සෞඛ්‍යයට අවදානම් මට්ටමක පවතිනන්නේ. ලෙඩ රෝගවලින් වැළකී, කඩිනමින් බර පාලනය කර නිරෝගී වීමට <strong>අදම අප හා එක්වන්න!</strong></p>
-                    </div>`;
-            }
+    window.open(`https://wa.me/94762204614?text=${encodeURIComponent(text)}`, '_blank');
+    document.getElementById('contact-form').reset();
 
-            statusDisplay.innerHTML = statusText;
-        }
-
-        // 3. Dark/Light Theme Toggle
-        function toggleTheme() {
-            const html = document.documentElement;
-            const themeIcon = document.getElementById('theme-icon');
-            const themeIconMobile = document.getElementById('theme-icon-mobile');
-
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                themeIcon.className = "fa-solid fa-sun text-amber-500";
-                themeIconMobile.className = "fa-solid fa-sun text-amber-500";
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                themeIcon.className = "fa-solid fa-moon text-white";
-                themeIconMobile.className = "fa-solid fa-moon text-white";
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-            document.getElementById('theme-icon').className = "fa-solid fa-sun text-amber-500";
-            document.getElementById('theme-icon-mobile').className = "fa-solid fa-sun text-amber-500";
-        }
-
-        // 4. Mobile Menu Toggle
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-            });
-        }
-    </script>
+    const box = document.getElementById('success-box');
+    box.classList.remove('hidden');
+    box.style.display = 'flex';
+    setTimeout(() => { box.classList.add('hidden'); box.style.display = ''; }, 4500);
+}
+</script>
 </body>
 </html>
+
