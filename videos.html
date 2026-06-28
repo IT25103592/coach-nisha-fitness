@@ -3,13 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Videos - Coach Nisha Fitness</title>
+    <title>වීඩියෝස් - Coach Nisha Fitness</title>
     <link href="logo.png" rel="icon" type="image/png"/>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <!-- Tailwind CSS v4 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>@variant dark (.dark &);</style>
+    <!-- AOS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
     <style>
         :root { --accent: #cfff00; --dark-bg: #090d16; --off-white: #f8fafc; }
@@ -28,6 +32,10 @@
         .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #cfff00; border-radius: 1px; transition: width 0.25s ease; }
         .nav-link:hover::after { width: 100%; }
         .active-link::after { width: 100% !important; }
+
+        /* ─── Mobile menu Smooth Transition ─── */
+        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        #mobile-menu.open { max-height: 500px; border-bottom: 1px solid rgba(207,255,0,0.08); }
     </style>
 </head>
 <body class="overflow-x-hidden pt-24">
@@ -44,23 +52,28 @@
                     <div class="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">Fitness Center</div>
                 </div>
             </a>
-            <div class="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
+            
+            <!-- Desktop Menu Links -->
+            <div class="hidden lg:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
                 <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html">මුල් පිටුව</a>
                 <a class="nav-link active-link text-lime-500 dark:text-lime-300 transition" href="videos.html">වීඩියෝස්</a>
                 <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="photos.html">ගැලරිය</a>
                 <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#contact">සම්බන්ධ වීමට</a>
             </div>
+            
+            <!-- Controls -->
             <div class="flex items-center gap-3">
                 <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle">
                     <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
                 </button>
-                <button class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
+                <button class="lg:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
                     <i class="fa-solid fa-bars-staggered"></i>
                 </button>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div class="md:hidden hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+        
+        <!-- Mobile Menu Panel -->
+        <div class="lg:hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
             <div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
                 <a class="m-link hover:text-lime-500" href="index.html">මුල් පිටුව</a>
                 <a class="m-link text-lime-500" href="videos.html">වීඩියෝස්</a>
@@ -82,25 +95,25 @@
         <!-- Video Grid (2 Videos) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <!-- Video 1 -->     
-       <div class="glass-card rounded-2xl overflow-hidden p-3 shadow-lg" data-aos="fade-up">
-         <div class="relative rounded-xl overflow-hidden aspect-video bg-black flex items-center justify-center">
-             <video controls class="w-full h-full object-cover">
-                <source src="videos/video1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
+            <div class="glass-card rounded-2xl overflow-hidden p-3 shadow-lg" data-aos="fade-up">
+                <div class="relative rounded-xl overflow-hidden aspect-video bg-black flex items-center justify-center">
+                    <video controls class="w-full h-full object-cover">
+                        <source src="videos/video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
 
-    <!-- Video 2 -->
-    <div class="glass-card rounded-2xl overflow-hidden p-3 shadow-lg" data-aos="fade-up" data-aos-delay="150">
-        <div class="relative rounded-xl overflow-hidden aspect-video bg-black flex items-center justify-center">
-            <video controls class="w-full h-full object-cover">
-                <source src="videos/video2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <!-- Video 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-3 shadow-lg" data-aos="fade-up" data-aos-delay="150">
+                <div class="relative rounded-xl overflow-hidden aspect-video bg-black flex items-center justify-center">
+                    <video controls class="w-full h-full object-cover">
+                        <source src="videos/video2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <!-- More Channel Button -->
         <div class="text-center mt-16" data-aos="fade-up">
@@ -110,7 +123,7 @@
         </div>
     </section>
 
-    <!-- VIDEO MODAL PLAYER -->
+    <!-- VIDEO MODAL PLAYER (For External Streams/IFrames if needed later) -->
     <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex-col items-center justify-center p-4" onclick="closeVideoModal()">
         <button class="absolute top-5 right-5 text-white text-4xl hover:text-[#cfff00] transition cursor-pointer">&times;</button>
         <div class="w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
@@ -136,9 +149,25 @@
             localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
         });
 
-        // Mobile Menu
-        document.getElementById('hamburger').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        // Mobile Menu Control
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close menu when a link inside it is clicked
+        document.querySelectorAll('.m-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        });
+
+        // Close menu if clicked anywhere outside the navbar area
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
         });
 
         // Modal Control
