@@ -247,16 +247,20 @@
         
         <!-- Right Action Buttons -->
         <div class="flex items-center gap-3">
-            <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle" title="Theme">
-                <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" title="Toggle Theme"
+                class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-blue-400 transition cursor-pointer">
+                <i id="theme-icon" class="fa-solid fa-sun text-sm"></i>
             </button>
-            <!-- Fixed class: Using hidden class correctly so it disappears strictly on mobile -->
-            <a class="hidden md:inline-flex btn-accent text-sm py-2.5 px-5" href="index.html#contact">
-                <i class="fa-solid fa-arrow-trend-up text-xs"></i> දැන්ම එකතු වන්න
+
+            <!-- Call CTA -->
+            <a href="tel:+94716828553" class="hidden sm:inline-flex btn-grad text-sm py-2.5 px-5">
+                <i class="fa-solid fa-phone"></i> Call Now
             </a>
-            <!-- Mobile Menu Toggle Button (Visible on Mobile) -->
-            <button class="lg:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger" aria-label="Menu" type="button">
-                <i class="fa-solid fa-bars-staggered text-base" id="ham-icon"></i>
+
+            <!-- Mobile hamburger -->
+            <button id="hamburger" class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer">
+                <i class="fa-solid fa-bars"></i>
             </button>
         </div>
     </div>
