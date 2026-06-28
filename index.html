@@ -165,35 +165,11 @@
         }
         .glass-card:hover .svc-icon { box-shadow: 0 0 20px rgba(207,255,0,0.3); }
 
-        /* ─── Gallery ─── */
-        .gallery-img { overflow: hidden; border-radius: 16px; position: relative; }
-        .gallery-img img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-img:hover img { transform: scale(1.08); }
-        .gallery-overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(9,13,22,0.85) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.3s;
-            display: flex; align-items: flex-end; padding: 1rem;
-        }
-        .gallery-img:hover .gallery-overlay { opacity: 1; }
-
         /* ─── BMI Result Colors ─── */
         .bmi-underweight { color: #fbbf24; }
         .bmi-normal { color: #cfff00; }
         .bmi-over { color: #fb923c; }
         .bmi-obese { color: #f87171; }
-
-        /* ─── Pricing card highlight ─── */
-        .pricing-featured {
-            border: 2px solid #cfff00 !important;
-            background: rgba(207,255,0,0.04) !important;
-        }
-        .pricing-badge {
-            background: #cfff00; color: #090d16;
-            font-family: 'Outfit', sans-serif; font-weight: 700;
-            font-size: 0.65rem; padding: 2px 10px; border-radius: 99px;
-            letter-spacing: 0.05em; text-transform: uppercase;
-        }
 
         /* ─── Scroll hint ─── */
         #scroll-hint { animation: bounce-y 2s infinite; }
@@ -631,20 +607,29 @@
 window.addEventListener('load', () => {
     setTimeout(() => {
         const l = document.getElementById('loader');
-        l.classList.add('hide');
-        setTimeout(() => l.style.display = 'none', 700);
+        if(l) {
+            l.classList.add('hide');
+            setTimeout(() => l.style.display = 'none', 700);
+        }
     }, 1950);
 });
 
 /* ─── AOS ─── */
 AOS.init({ once: true, offset: 60, easing: 'ease-out-cubic' });
 
-/* ─── Scroll Progress ─── */
+/* ─── Scroll Progress & Navbar Scrolled Class ─── */
 window.addEventListener('scroll', () => {
     const st = document.documentElement.scrollTop;
     const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    document.getElementById('scroll-bar').style.width = (st / sh * 100) + '%';
-    document.getElementById('navbar').classList.toggle('scrolled', st > 60);
+    const scrollBar = document.getElementById('scroll-bar');
+    const navbar = document.getElementById('navbar');
+    
+    if(scrollBar && sh > 0) {
+        scrollBar.style.width = (st / sh * 100) + '%';
+    }
+    if(navbar) {
+        navbar.classList.toggle('scrolled', st > 60);
+    }
 });
 
 /* ─── Theme Toggle ─── */
@@ -654,73 +639,82 @@ const themeIcon = document.getElementById('theme-icon');
 
 if (localStorage.getItem('cn-theme') === 'light') {
     htmlEl.classList.remove('dark');
-    themeIcon.className = 'fa-solid fa-sun text-sm';
+    if(themeIcon) themeIcon.className = 'fa-solid fa-sun text-sm';
+} else {
+    htmlEl.classList.add('dark');
+    if(themeIcon) themeIcon.className = 'fa-solid fa-moon text-sm';
 }
 
-themeBtn.addEventListener('click', () => {
-    const isDark = htmlEl.classList.toggle('dark');
-    themeIcon.className = isDark ? 'fa-solid fa-moon text-sm' : 'fa-solid fa-sun text-sm';
-    localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
-});
+if(themeBtn) {
+    themeBtn.addEventListener('click', () => {
+        const isDark = htmlEl.classList.toggle('dark');
+        if(themeIcon) {
+            themeIcon.className = isDark ? 'fa-solid fa-moon text-sm' : 'fa-solid fa-sun text-sm';
+        }
+        localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
+    });
+}
 
 /* ─── Mobile Menu ─── */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
-hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
-    mobileMenu.classList.toggle('open');
-});
+if(hamburger && mobileMenu) {
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('open');
+    });
 
-document.querySelectorAll('.m-link').forEach(l => {
-    l.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
+    document.querySelectorAll('.m-link').forEach(l => {
+        l.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    });
 
-document.addEventListener('click', (e) => {
-    if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
-        mobileMenu.classList.remove('open');
-    }
-});
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            mobileMenu.classList.remove('open');
+        }
+    });
+}
 
 /* ─── Particle Canvas ─── */
 const canvas = document.getElementById('hero-canvas');
-const ctx = canvas.getContext('2d');
+if(canvas) {
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+    resize(); window.addEventListener('resize', resize);
 
-function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-resize(); window.addEventListener('resize', resize);
+    const particles = [];
+    function spawnParticle() {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: canvas.height + 10,
+            size: Math.random() * 2 + 0.5,
+            speed: Math.random() * 0.8 + 0.3,
+            life: 1,
+            decay: Math.random() * 0.004 + 0.002,
+            color: Math.random() > 0.6 ? '#cfff00' : '#86efac'
+        });
+    }
 
-const particles = [];
-function spawnParticle() {
-    particles.push({
-        x: Math.random() * canvas.width,
-        y: canvas.height + 10,
-        size: Math.random() * 2 + 0.5,
-        speed: Math.random() * 0.8 + 0.3,
-        life: 1,
-        decay: Math.random() * 0.004 + 0.002,
-        color: Math.random() > 0.6 ? '#cfff00' : '#86efac'
-    });
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (Math.random() < 0.15) spawnParticle();
+        for (let i = particles.length - 1; i >= 0; i--) {
+            let p = particles[i];
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+            let alpha = Math.floor(p.life * 255).toString(16).padStart(2, '0');
+            ctx.fillStyle = p.color + alpha;
+            ctx.fill();
+            p.y -= p.speed;
+            p.x += (Math.random() - 0.5) * 0.4;
+            p.life -= p.decay;
+            if (p.life <= 0) particles.splice(i, 1);
+        }
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
 }
-
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (Math.random() < 0.15) spawnParticle();
-    particles.forEach((p, i) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
-        ctx.fillStyle = p.color + Math.floor(p.life * 160).toString(16).padStart(2, '0');
-        ctx.shadowColor = p.color;
-        ctx.shadowBlur = 6;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-        p.y -= p.speed;
-        p.x += (Math.random() - 0.5) * 0.4;
-        p.life -= p.decay;
-        if (p.life <= 0) particles.splice(i, 1);
-    });
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
 
 /* ─── BMI Calculator ─── */
 function calculateBMI() {
@@ -728,6 +722,8 @@ function calculateBMI() {
     const h = parseFloat(document.getElementById('height').value);
     const result = document.getElementById('bmi-result');
     const status = document.getElementById('bmi-status');
+
+    if (!result || !status) return;
 
     if (!w || !h || w <= 0 || h <= 0) {
         result.textContent = '--';
@@ -776,9 +772,11 @@ function handleFormSubmit(e) {
     document.getElementById('contact-form').reset();
 
     const box = document.getElementById('success-box');
-    box.classList.remove('hidden');
-    box.style.display = 'flex';
-    setTimeout(() => { box.classList.add('hidden'); box.style.display = ''; }, 4500);
+    if(box) {
+        box.classList.remove('hidden');
+        box.style.display = 'flex';
+        setTimeout(() => { box.classList.add('hidden'); box.style.display = ''; }, 4500);
+    }
 }
 </script>
 </body>
