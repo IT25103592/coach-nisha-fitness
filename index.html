@@ -236,59 +236,62 @@
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-white/5 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md" id="navbar">
     <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
         <!-- Logo -->
-        <a class="flex items-center gap-3" href="#home">
+        <a class="flex items-center gap-3" href="index.html">
             <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
                 <i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
             </div>
             <div>
                 <div class="font-display font-black text-lg leading-none text-slate-900 dark:text-white tracking-wide">
-                                    COACH<span class="accent-text">NISHA</span>
+                    COACH<span class="accent-text">NISHA</span>
                 </div>
                 <div class="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">Fitness Center</div>
             </div>
         </a>
         
-        <!-- Desktop Links -->
-        <div class="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
-            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#about">අප ගැන</a>
-            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#services">සේවාවන්</a>
-            
-            <!-- 🎯 මෙන්න මේ හරියට ඔයාගේ අලුත් ලින්ක්ස් දෙක ඇතුළත් කළා -->
+        <!-- Desktop Links (Hidden on mobile/tablet, visible on large screens) -->
+        <div class="hidden lg:flex items-center gap-6 text-sm text-slate-600 dark:text-slate-300">
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html">මුල් පිටුව</a>
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#about">අප ගැන</a>
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#services">සේවාවන්</a>
             <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="videos.html">වීඩියෝස්</a>
             <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="photos.html">ගැලරිය</a>
-            
-            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#bmi">BMI ගණකය</a>
-            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#schedule">වේලාවන්</a>
-            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="#contact">සම්බන්ධ වීමට</a>
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#bmi">BMI ගණකය</a>
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#schedule">වේලාවන්</a>
+            <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#contact">සම්බන්ධ වීමට</a>
         </div>
         
+        <!-- Right Action Buttons -->
         <div class="flex items-center gap-3">
             <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle" title="Theme">
                 <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
             </button>
-            <a class="hidden sm:inline-flex btn-accent text-sm py-2.5 px-5" href="#contact">
+            <a class="hidden sm:inline-flex btn-accent text-sm py-2.5 px-5" href="index.html#contact">
                 <i class="fa-solid fa-arrow-trend-up text-xs"></i> දැන්ම එකතු වන්න
             </a>
-            <button class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
+            <!-- Hamburger button visible on anything smaller than LG screens -->
+            <button class="lg:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
                 <i class="fa-solid fa-bars-staggered"></i>
             </button>
         </div>
     </div>
     
-    <!-- Mobile Menu -->
-    <div class="md:hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+    <!-- Mobile Menu (Hidden by default using 'hidden') -->
+    <div class="lg:hidden hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
         <div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
-            <a class="m-link hover:text-lime-500" href="#about">අප ගැන</a>
-            <a class="m-link hover:text-lime-500" href="#services">සේවාවන්</a>
-            <a class="m-link hover:text-lime-500" href="#bmi">BMI ගණකය</a>
-            <a class="m-link hover:text-lime-500" href="#schedule">වේලාවන්</a>
-            <a class="btn-accent text-sm py-3 px-5 mt-1 justify-center" href="#contact">
+            <a class="m-link hover:text-lime-500" href="index.html">මුල් පිටුව</a>
+            <a class="m-link hover:text-lime-500" href="index.html#about">අප ගැන</a>
+            <a class="m-link hover:text-lime-500" href="index.html#services">සේවාවන්</a>
+            <a class="m-link hover:text-lime-500" href="videos.html">වීඩියෝස්</a>
+            <a class="m-link hover:text-lime-500" href="photos.html">ගැලරිය</a>
+            <a class="m-link hover:text-lime-500" href="index.html#bmi">BMI ගණකය</a>
+            <a class="m-link hover:text-lime-500" href="index.html#schedule">වේලාවන්</a>
+            <a class="m-link hover:text-lime-500" href="index.html#contact">සම්බන්ධ වීමට</a>
+            <a class="btn-accent text-sm py-3 px-5 mt-1 justify-center inline-flex" href="index.html#contact">
                 <i class="fa-solid fa-arrow-trend-up"></i> දැන්ම එකතු වන්න
             </a>
         </div>
     </div>
 </nav>
-
 <!-- ════════════ HERO ════════════ -->
 <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16" id="home">
     <!-- BG Image -->
