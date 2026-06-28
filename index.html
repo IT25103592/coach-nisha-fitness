@@ -7,7 +7,7 @@
     <link href="logo.png" rel="icon" type="image/png"/>
     <!-- Google Fonts: Outfit + Noto Sans Sinhala -->
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&amp;family=Noto+Sans+Sinhala:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>@variant dark (.dark &);</style>
@@ -175,9 +175,18 @@
         #scroll-hint { animation: bounce-y 2s infinite; }
         @keyframes bounce-y { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 
-        /* ─── Mobile menu ─── */
-        #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-        #mobile-menu.open { max-height: 500px; border-bottom: 1px solid rgba(207,255,0,0.08); }
+        /* ─── Mobile menu Custom CSS for Smoothness ─── */
+        #mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-in-out, opacity 0.25s ease;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 550px;
+            opacity: 1;
+            border-top: 1px solid rgba(207,255,0,0.1);
+        }
 
         /* ─── Hero canvas ─── */
         #hero-canvas { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
@@ -208,11 +217,11 @@
 <!-- ─── Scroll Progress ─── -->
 <div id="scroll-bar"></div>
 
-<!-- ════════════ NAVBAR ════════════ -->
+<!-- ════════════ NAVBAR (FIXED MOBILE BUG) ════════════ -->
 <nav class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-white/5 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md" id="navbar">
     <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
         <!-- Logo -->
-        <a class="flex items-center gap-3" href="index.html">
+        <a class="flex items-center gap-3 flex-shrink-0" href="index.html">
             <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
                 <i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
             </div>
@@ -241,27 +250,29 @@
             <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle" title="Theme">
                 <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
             </button>
-            <a class="hidden sm:inline-flex btn-accent text-sm py-2.5 px-5" href="index.html#contact">
+            <!-- Fixed class: Using hidden class correctly so it disappears strictly on mobile -->
+            <a class="hidden md:inline-flex btn-accent text-sm py-2.5 px-5" href="index.html#contact">
                 <i class="fa-solid fa-arrow-trend-up text-xs"></i> දැන්ම එකතු වන්න
             </a>
-            <button class="lg:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
-                <i class="fa-solid fa-bars-staggered"></i>
+            <!-- Mobile Menu Toggle Button (Visible on Mobile) -->
+            <button class="lg:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger" aria-label="Menu" type="button">
+                <i class="fa-solid fa-bars-staggered text-base" id="ham-icon"></i>
             </button>
         </div>
     </div>
     
-    <!-- Mobile Menu -->
-    <div class="lg:hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+    <!-- Mobile Menu Container -->
+    <div class="hidden max-lg:block px-5 bg-white dark:bg-[#090d16] w-full" id="mobile-menu">
         <div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
-            <a class="m-link hover:text-lime-500" href="index.html">මුල් පිටුව</a>
-            <a class="m-link hover:text-lime-500" href="index.html#about">අප ගැන</a>
-            <a class="m-link hover:text-lime-500" href="index.html#services">සේවාවන්</a>
-            <a class="m-link hover:text-lime-500" href="videos.html">වීඩියෝස්</a>
-            <a class="m-link hover:text-lime-500" href="photos.html">ගැලරිය</a>
-            <a class="m-link hover:text-lime-500" href="index.html#bmi">BMI ගණකය</a>
-            <a class="m-link hover:text-lime-500" href="index.html#schedule">වේලාවන්</a>
-            <a class="m-link hover:text-lime-500" href="index.html#contact">සම්බන්ධ වීමට</a>
-            <a class="m-link btn-accent text-sm py-3 px-5 mt-1 justify-center inline-flex" href="index.html#contact">
+            <a class="m-link hover:text-lime-500 py-1" href="index.html">මුල් පිටුව</a>
+            <a class="m-link hover:text-lime-500 py-1" href="index.html#about">අප ගැන</a>
+            <a class="m-link hover:text-lime-500 py-1" href="index.html#services">සේවාවන්</a>
+            <a class="m-link hover:text-lime-500 py-1" href="videos.html">වීඩියෝස්</a>
+            <a class="m-link hover:text-lime-500 py-1" href="photos.html">ගැලරිය</a>
+            <a class="m-link hover:text-lime-500 py-1" href="index.html#bmi">BMI ගණකය</a>
+            <a class="m-link hover:text-lime-500 py-1" href="index.html#schedule">වේලාවන්</a>
+            <a class="m-link hover:text-lime-500 py-1" href="index.html#contact">සම්බන්ධ වීමට</a>
+            <a class="m-link btn-accent text-sm py-3 px-5 mt-1 justify-center inline-flex w-full" href="index.html#contact">
                 <i class="fa-solid fa-arrow-trend-up"></i> දැන්ම එකතු වන්න
             </a>
         </div>
@@ -287,7 +298,7 @@
                 <span class="block">මඟ දෙමු.</span>
             </h1>
             <p class="text-base md:text-lg text-slate-300 leading-relaxed max-w-xl mb-10">
-                ඔබේ ශරීරය ශක්තිමත්, ක්‍රියාශීලී සහ නිරෝගී කරගැනීමට <strong class="text-lime-300">නවීන පහසුකම්</strong> සහ <strong class="text-lime-300">පළපුරුදු සහතිකලත් කෝච්</strong> සේවය දැන් ලබාගන්න.
+                Oබේ ශරීරය ශක්තිමත්, ක්‍රියාශීලී සහ නිරෝගී කරගැනීමට <strong class="text-lime-300">නවීන පහසුකම්</strong> සහ <strong class="text-lime-300">පළපුරුදු සහතිකලත් කෝච්</strong> සේවය දැන් ලබාගන්න.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 mb-10">
                 <a class="btn-accent text-base" href="#contact">
@@ -329,7 +340,7 @@
         </h2>
         <div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
         <p class="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">
-                    කෝච් නිශා ෆිට්නස් සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ශ්‍රී ලාංකීය ප්‍රමුඛතම ස්ථානයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
+                    කෝච් නිශා ෆิต්නස් සෙන්ටර් යනු ඔබේ සෞඛ්‍ය සහ යෝග්‍යතා ඉලක්ක සපුරා ගැනීම සඳහා කැපවී සිටින ශ්‍රී ලාංකීය ප්‍රමුඛතම ස්ථානයකි. ශරීරය මෙන්ම මනසද නිරෝගී කරන සුවපහසු පරිසරයක් අප සතුයි.
                 </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -655,23 +666,32 @@ if(themeBtn) {
     });
 }
 
-/* ─── Mobile Menu ─── */
+/* ─── Mobile Menu (FIXED & LOGIC OPTIMIZED) ─── */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
+const hamIcon = document.getElementById('ham-icon');
 
 if(hamburger && mobileMenu) {
     hamburger.addEventListener('click', (e) => {
         e.stopPropagation();
-        mobileMenu.classList.toggle('open');
+        const isOpen = mobileMenu.classList.toggle('open');
+        
+        if(hamIcon) {
+            hamIcon.className = isOpen ? 'fa-solid fa-xmark text-base' : 'fa-solid fa-bars-staggered text-base';
+        }
     });
 
     document.querySelectorAll('.m-link').forEach(l => {
-        l.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        l.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            if(hamIcon) hamIcon.className = 'fa-solid fa-bars-staggered text-base';
+        });
     });
 
     document.addEventListener('click', (e) => {
         if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
             mobileMenu.classList.remove('open');
+            if(hamIcon) hamIcon.className = 'fa-solid fa-bars-staggered text-base';
         }
     });
 }
@@ -757,7 +777,7 @@ function handleFormSubmit(e) {
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const msg = document.getElementById('msg').value.trim();
-    if (!name || !phone) { alert('කරුණාකර නම සහ දුරකථන අංකය ඇතුළත් කරන්න.'); return; }
+    if (!name || !phone) { alert('කරුණාකර නම සහ... දුරකථන අංකය ඇතුළත් කරන්න.'); return; }
 
     let count = Number(localStorage.getItem('cn_customers') || 0) + 1;
     localStorage.setItem('cn_customers', count);
