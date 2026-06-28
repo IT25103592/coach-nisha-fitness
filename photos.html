@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="si">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Gallery - Coach Nisha Fitness</title>
+    <link href="logo.png" rel="icon" type="image/png"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>@variant dark (.dark &);</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+    <style>
+        :root { --accent: #cfff00; --dark-bg: #090d16; --off-white: #f8fafc; }
+        body { font-family: 'Noto Sans Sinhala', 'Inter', sans-serif; background: var(--off-white); color: #0f172a; transition: background 0.3s, color 0.3s; }
+        .dark body { background: var(--dark-bg); color: var(--off-white); }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        .accent-text { color: #cfff00; }
+        .grad-text { background: linear-gradient(135deg, #cfff00 0%, #86efac 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(16px); border: 1px solid rgba(207,255,0,0.08); transition: all 0.3s ease; }
+        .glass-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(207,255,0,0.1); border-color: rgba(207,255,0,0.3); }
+        html:not(.dark) .glass-card { background: #fff; border: 1px solid #e2e8f0; }
+        .btn-accent { background: #cfff00; color: #090d16; font-family: 'Outfit', sans-serif; font-weight: 700; transition: all 0.2s; }
+        .btn-accent:hover { background: #b3db00; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(207,255,0,0.35); }
+        .eyebrow { font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #cfff00; }
+        .nav-link { position: relative; padding-bottom: 2px; font-family: 'Outfit', sans-serif; font-weight: 600; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #cfff00; border-radius: 1px; transition: width 0.25s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .active-link::after { width: 100% !important; }
+    </style>
+</head>
+<body class="overflow-x-hidden pt-24">
+
+    <!-- ════════════ NAVBAR ════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-white/5 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <a class="flex items-center gap-3" href="index.html">
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
+                    <i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
+                </div>
+                <div>
+                    <div class="font-display font-black text-lg leading-none text-slate-900 dark:text-white tracking-wide">COACH<span class="accent-text">NISHA</span></div>
+                    <div class="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">Fitness Center</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html">මුල් පිටුව</a>
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="videos.html">වීඩියෝස්</a>
+                <a class="nav-link active-link text-lime-500 dark:text-lime-300 transition" href="photos.html">ගැලරිය</a>
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#contact">සම්බන්ධ වීමට</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle">
+                    <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
+                </button>
+                <button class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+            <div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a class="m-link hover:text-lime-500" href="index.html">මුල් පිටුව</a>
+                <a class="m-link hover:text-lime-500" href="videos.html">වීඩියෝස්</a>
+                <a class="m-link text-lime-500" href="photos.html">ගැලරිය</a>
+                <a class="m-link hover:text-lime-500" href="index.html#contact">සම්බන්ධ වීමට</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ════════════ GALLERY CONTENT ════════════ -->
+    <section class="py-16 max-w-7xl mx-auto px-5">
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="eyebrow">Transformations & Moments</span>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">Our Photo <span class="grad-text">Gallery</span></h2>
+            <div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+            <p class="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">අපගේ සාමාජිකයින්ගේ සාර්ථක වෙනස්වීම් සහ විශේෂ අවස්ථා.</p>
+        </div>
+
+        <!-- Photo Grid (4 Images) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <!-- Photo 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-2 cursor-pointer group" data-aos="fade-up" onclick="openLightbox('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=600', 'Transformation Workout')">
+                <div class="relative rounded-xl overflow-hidden aspect-square">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-2xl text-[#cfff00]"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-2 cursor-pointer group" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=600', 'Gym Training Session')">
+                <div class="relative rounded-xl overflow-hidden aspect-square">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-2xl text-[#cfff00]"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-2 cursor-pointer group" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=600', 'Fitness Coaching')">
+                <div class="relative rounded-xl overflow-hidden aspect-square">
+                    <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-2xl text-[#cfff00]"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Photo 4 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-2 cursor-pointer group" data-aos="fade-up" data-aos-delay="300" onclick="openLightbox('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=600', 'Cardio Motivation')">
+                <div class="relative rounded-xl overflow-hidden aspect-square">
+                    <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition duration-300">
+                        <i class="fa-solid fa-magnifying-glass-plus text-2xl text-[#cfff00]"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instagram Button -->
+        <div class="text-center mt-16" data-aos="fade-up">
+            <a href="https://instagram.com/yourprofile" target="_blank" class="btn-accent px-8 py-3.5 rounded-xl inline-flex items-center gap-3 font-display bg-gradient-to-r from-purple-600 via-pink-600 to-yellow-500 text-white shadow-lg cursor-pointer border-none">
+                <i class="fa-brands fa-instagram text-lg"></i> View More on Instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4" onclick="closeLightbox()">
+        <button class="absolute top-5 right-5 text-white text-4xl hover:text-[#cfff00] transition cursor-pointer">&times;</button>
+        <div class="max-w-3xl max-h-[80vh] rounded-xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <img id="lightbox-img" class="max-w-full max-h-[70vh] object-contain mx-auto" src="">
+            <div id="lightbox-caption" class="text-center text-white/80 font-medium mt-4 text-sm"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 60, easing: 'ease-out-cubic' });
+
+        // Theme Setup
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        if (localStorage.getItem('cn-theme') === 'light') {
+            htmlEl.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-sun text-sm';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            themeIcon.className = isDark ? 'fa-solid fa-moon text-sm' : 'fa-solid fa-sun text-sm';
+            localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
+        });
+
+        // Mobile Menu
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Lightbox Control
+        function openLightbox(src, caption) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-caption').innerText = caption;
+            lb.classList.remove('hidden');
+            lb.classList.add('flex');
+        }
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.add('hidden');
+            lb.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>

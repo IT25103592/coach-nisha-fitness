@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="scroll-smooth dark" lang="si">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Videos - Coach Nisha Fitness</title>
+    <link href="logo.png" rel="icon" type="image/png"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Noto+Sans+Sinhala:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>@variant dark (.dark &);</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+    <style>
+        :root { --accent: #cfff00; --dark-bg: #090d16; --off-white: #f8fafc; }
+        body { font-family: 'Noto Sans Sinhala', 'Inter', sans-serif; background: var(--off-white); color: #0f172a; transition: background 0.3s, color 0.3s; }
+        .dark body { background: var(--dark-bg); color: var(--off-white); }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        .accent-text { color: #cfff00; }
+        .grad-text { background: linear-gradient(135deg, #cfff00 0%, #86efac 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(16px); border: 1px solid rgba(207,255,0,0.08); transition: all 0.3s ease; }
+        .glass-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(207,255,0,0.1); border-color: rgba(207,255,0,0.3); }
+        html:not(.dark) .glass-card { background: #fff; border: 1px solid #e2e8f0; }
+        .btn-accent { background: #cfff00; color: #090d16; font-family: 'Outfit', sans-serif; font-weight: 700; transition: all 0.2s; }
+        .btn-accent:hover { background: #b3db00; transform: translateY(-2px); box-shadow: 0 12px 30px rgba(207,255,0,0.35); }
+        .eyebrow { font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #cfff00; }
+        .nav-link { position: relative; padding-bottom: 2px; font-family: 'Outfit', sans-serif; font-weight: 600; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #cfff00; border-radius: 1px; transition: width 0.25s ease; }
+        .nav-link:hover::after { width: 100%; }
+        .active-link::after { width: 100% !important; }
+    </style>
+</head>
+<body class="overflow-x-hidden pt-24">
+
+    <!-- ════════════ NAVBAR ════════════ -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-slate-200 dark:border-white/5 bg-white/95 dark:bg-[#090d16]/95 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <a class="flex items-center gap-3" href="index.html">
+                <div class="w-9 h-9 rounded-xl flex items-center justify-center" style="background:#cfff00">
+                    <i class="fa-solid fa-dumbbell text-[#090d16] text-base"></i>
+                </div>
+                <div>
+                    <div class="font-display font-black text-lg leading-none text-slate-900 dark:text-white tracking-wide">COACH<span class="accent-text">NISHA</span></div>
+                    <div class="text-[10px] font-semibold text-slate-400 tracking-widest uppercase">Fitness Center</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center gap-7 text-sm text-slate-600 dark:text-slate-300">
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html">මුල් පිටුව</a>
+                <a class="nav-link active-link text-lime-500 dark:text-lime-300 transition" href="videos.html">වීඩියෝස්</a>
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="photos.html">ගැලරිය</a>
+                <a class="nav-link hover:text-lime-500 dark:hover:text-lime-300 transition" href="index.html#contact">සම්බන්ධ වීමට</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="w-9 h-9 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-lime-400 transition cursor-pointer" id="theme-toggle">
+                    <i class="fa-solid fa-moon text-sm" id="theme-icon"></i>
+                </button>
+                <button class="md:hidden w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 cursor-pointer" id="hamburger">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden px-5 border-t border-slate-100 dark:border-white/5 bg-white dark:bg-[#090d16]" id="mobile-menu">
+            <div class="flex flex-col py-4 gap-4 text-sm font-semibold text-slate-600 dark:text-slate-300">
+                <a class="m-link hover:text-lime-500" href="index.html">මුල් පිටුව</a>
+                <a class="m-link text-lime-500" href="videos.html">වීඩියෝස්</a>
+                <a class="m-link hover:text-lime-500" href="photos.html">ගැලරිය</a>
+                <a class="m-link hover:text-lime-500" href="index.html#contact">සම්බන්ධ වීමට</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ════════════ VIDEOS CONTENT ════════════ -->
+    <section class="py-16 max-w-7xl mx-auto px-5">
+        <div class="text-center mb-14" data-aos="fade-up">
+            <span class="eyebrow">Workouts & Tips</span>
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">Featured <span class="grad-text">Videos</span></h2>
+            <div class="h-1 w-16 mx-auto rounded-full" style="background:#cfff00"></div>
+            <p class="text-slate-500 dark:text-slate-400 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">නිරෝගී ජීවිතයක් වෙනුවෙන් නිවැරදි ව්‍යායාම රටා මෙතනින් ඉගෙන ගන්න.</p>
+        </div>
+
+        <!-- Video Grid (4 Videos) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Video 1 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-3" data-aos="fade-up">
+                <div class="relative rounded-xl overflow-hidden aspect-video group cursor-pointer" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-[#cfff00] text-[#090d16] flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold mt-4 px-2 text-slate-900 dark:text-white">Full Body Fat Burn Workout</h3>
+            </div>
+            <!-- Video 2 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative rounded-xl overflow-hidden aspect-video group cursor-pointer" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-[#cfff00] text-[#090d16] flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold mt-4 px-2 text-slate-900 dark:text-white">Healthy Meal Prep Tips</h3>
+            </div>
+            <!-- Video 3 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-3" data-aos="fade-up">
+                <div class="relative rounded-xl overflow-hidden aspect-video group cursor-pointer" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-[#cfff00] text-[#090d16] flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold mt-4 px-2 text-slate-900 dark:text-white">Fitness Motivation Routine</h3>
+            </div>
+            <!-- Video 4 -->
+            <div class="glass-card rounded-2xl overflow-hidden p-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative rounded-xl overflow-hidden aspect-video group cursor-pointer" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+                    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-[#cfff00] text-[#090d16] flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-play ml-1"></i>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-lg font-bold mt-4 px-2 text-slate-900 dark:text-white">Abs Workout for Beginners</h3>
+            </div>
+        </div>
+
+        <!-- More Channel Button -->
+        <div class="text-center mt-16" data-aos="fade-up">
+            <a href="https://youtube.com/@yourchannel" target="_blank" class="btn-accent px-8 py-3.5 rounded-xl inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold shadow-lg shadow-red-600/20 hover:shadow-red-600/30 border-none cursor-pointer">
+                <i class="fa-brands fa-youtube text-lg"></i> View Our YouTube Channel
+            </a>
+        </div>
+    </section>
+
+    <!-- VIDEO MODAL PLAYER -->
+    <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 hidden flex-col items-center justify-center p-4" onclick="closeVideoModal()">
+        <button class="absolute top-5 right-5 text-white text-4xl hover:text-[#cfff00] transition cursor-pointer">&times;</button>
+        <div class="w-full max-w-3xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <iframe id="modal-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ once: true, offset: 60, easing: 'ease-out-cubic' });
+
+        // Theme Setup
+        const htmlEl = document.documentElement;
+        const themeBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        if (localStorage.getItem('cn-theme') === 'light') {
+            htmlEl.classList.remove('dark');
+            themeIcon.className = 'fa-solid fa-sun text-sm';
+        }
+        themeBtn.addEventListener('click', () => {
+            const isDark = htmlEl.classList.toggle('dark');
+            themeIcon.className = isDark ? 'fa-solid fa-moon text-sm' : 'fa-solid fa-sun text-sm';
+            localStorage.setItem('cn-theme', isDark ? 'dark' : 'light');
+        });
+
+        // Mobile Menu
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Modal Control
+        function openVideoModal(url) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('modal-iframe');
+            iframe.src = url + "?autoplay=1";
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('modal-iframe');
+            iframe.src = "";
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
